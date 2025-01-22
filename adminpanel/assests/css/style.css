@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+img {
+    max-width: 100%
+}
+
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #505050;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative
+}
+
+.footer {
+    width: 100%;
+    color: #fff;
+    background: rgb(0 0 0);
+    padding: 1rem 0
+}
+
+.form-box,
+.invoice-box {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    background-color: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.form-box h2,
+.invoice-box h2 {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 0 20px;
+    border-bottom: 1px solid rgb(0 0 0 / 6%);
+    padding: 1em;
+    color: #fff;
+    background-color:#ec3237;
+}
+
+.form-box h3 {
+    font-size: 18px;
+    color: #a92c50
+}
+
+.form-box h4 {
+    font-size: 18px;
+    line-height: 28px;
+    background-color:#3e4095;
+    color: #fff;
+    padding: .8rem 1.5rem
+}
+
+.form-box h4 span {
+    display: block;
+    font-size: 14px;
+    background: #ffe891
+}
+
+.form-box li {
+    margin-bottom: 1.2rem
+}
+
+.form-box tr h3 {
+    font-size: 22px;
+    color: #a92c50;
+    line-height: 32px;
+    background: #ffcf1c;
+    margin: 0;
+    text-align: center;
+    padding: 10px
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom
+}
+
+.form-box .form-control {
+    border: 1px solid #dadada;
+    border-radius: 8px
+}
+
+label {
+    font-size: 14px;
+    line-height: 1.5;
+    color:var(--bs-dark);
+}
+
+.mendetary,
+label.error {
+    color: red;
+    font-size: 12px
+}
+
+.add {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #109d15;
+    font-weight: 400;
+    border: 2px solid #109d15;
+    background: #fff
+}
+
+.delete {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 22px;
+    color: red;
+    font-weight: 400;
+    border: 2px solid red;
+    background: #fff
+}
+
+.instructions h3 {
+    color: red
+}
+
+.instructions ol {
+    padding-left: 1rem;
+    list-style: decimal
+}
+
+.instructions ol li {
+    padding: .3rem 0;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0;
+}
+
+.instructions ol.d-flex li {
+    max-width: 300px;
+    width: 100%;
+}
+
+.declaration ul {
+    list-style: upper-alpha;
+    margin-left: 1.5rem;
+}
