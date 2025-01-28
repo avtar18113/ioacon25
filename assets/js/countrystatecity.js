@@ -43,6 +43,7 @@ function locationInfo() {
         });
     };
     this.getStates = function(id) {
+        console.log(id);
         jQuery(".states option:gt(0)").remove();
         jQuery(".cities option:gt(0)").remove();
         //get additional fields
@@ -68,6 +69,7 @@ function locationInfo() {
         var data = {};
         jQuery('.countries').find("option:eq(0)").html("Please wait..");
         call.send(data, url, method, function(data) {
+            console.log(data);
             jQuery('.countries').find("option:eq(0)").html("Select Country");
             jQuery.each(data['result'], function(key, val) {
                 var option = jQuery('<option />');
@@ -81,7 +83,7 @@ function locationInfo() {
 }
 jQuery(function() {
     var loc = new locationInfo();
-    console.log(loc);
+   
     loc.getCountries();
     jQuery(".countries").on("change", function(ev) {
         var countryId = jQuery("option:selected", this).attr('countryid');

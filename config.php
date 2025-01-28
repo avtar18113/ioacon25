@@ -14,3 +14,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
+$siteTitle="IOACON 2025 Guwahati";
+$siteURL="https://ioacon2025guwahati.com";
+$regpath='https://concepttc.com/registration/ioacon25/regsubmit';
+$siteLogo=$regpath."/assets/images/iocon-logo.webp";
+$metaTitle="IOACON 2025 - Guwahati Conference";

@@ -1,0 +1,29 @@
+
+# ==============================================
+# RewriteEngine On
+# RewriteCond %{SERVER_PORT} 80
+# RewriteRule ^(.*)$ https://isar2023.in/$index.php [R,L]
+
+
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME} !-f
+
+# RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+
+# Enable Rewrite Engine
+
+
+# Rewrite Rule to Handle Clean URLs
+
