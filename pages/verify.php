@@ -41,7 +41,7 @@ try {
         throw new Exception("Database update failed: " . mysqli_stmt_error($stmt));
     }
     mysqli_stmt_close($stmt);
-    echo "<script>window.location.href='email_script.php';</script>";
+    echo "<script>window.location.href='../query/email_script.php';</script>";
     exit();
 } catch (SignatureVerificationError $e) {
     $success = false;

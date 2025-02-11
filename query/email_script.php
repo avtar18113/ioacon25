@@ -148,7 +148,7 @@ function generateEmailBody($row, $sitePath, $regPath) {
                         Transaction ID: <strong>{$row['razorpay_payment_id']}</strong>
                     </td>
                 </tr>
-                
+                <tr><td><b>You can attend conference on below dates as per your selected registration choices</b></td></tr>
                 $dateaccess
                 
                 <tr>
