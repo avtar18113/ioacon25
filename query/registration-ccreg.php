@@ -14,7 +14,7 @@ if (!empty($email)) {
         (isset($_POST['cme_reg'])) ? $cme_reg = $_POST['cme_reg'] : $cme_reg = null;
         (isset($_POST['workshop'])) ? $workshop = $_POST['workshop'] : $workshop = null;
         (isset($_POST['pg_teach_pro'])) ? $pg_teach_pro = $_POST['pg_teach_pro'] : $pg_teach_pro = null;
-        (isset($_POST['mcn'])) ? $mcn = $_POST['mcn'] : $mcn = null;
+        (isset($_POST['medical_council_no'])) ? $medical_council_no = $_POST['medical_council_no'] : $medical_council_no = null;
         (isset($_POST['institute'])) ? $institute = $_POST['institute'] : $institute = null;
         (isset($_POST['gender'])) ? $gender = $_POST['gender'] : $gender = null;
         (isset($_POST['designation'])) ? $designation = $_POST['designation'] : $designation = null;
@@ -204,10 +204,11 @@ if (!empty($email)) {
         $accBanqTotal=0;}
         $accFee1=($acc_fee/$total_accompany);
     $acc_total= $acc_fee + $accCmeTotal + $accBanqTotal;
-    $reg_total=$reg_fee+$cmeFee+$wrk_fee+$banqFee+$pg_teach_fee+$banqFee2;
-    $total = $reg_total + $acc_total;
-    $charges = 0;
-    $gtotal = round($total + $charges);
+    $registration_total=$reg_fee+$cmeFee+$wrk_fee+$banqFee+$pg_teach_fee+$banqFee2;
+    
+    $total = $registration_total + $acc_total;
+   
+    $gtotal = round($total);
     $tid = date('Ymdhis');
     $order_id = (rand(11111, 99999));
     $_SESSION['tid'] = $tid;
@@ -232,25 +233,26 @@ if (!empty($email)) {
         "a1age" => $_POST['a1age'],
         "accFee1"=>$accFee1,
         "acc_cme1" => $cme1,
+        "medical_council_no"=>$medical_council_no,
         "acc_cme1_fee"=>$accCmeFee1,
         "a_banquet1" => $a_banquet1,
-        "a_banquet1_fee" => $a_banquet1_fee,
+        "a_banquet1_fee" => $accBanqFee1,
         "a2name" => $_POST['a2name'],
         "a2age" => $_POST['a2age'],
         "accFee2"=>$accFee1,
         "acc_cme2" => $cme2,
         "acc_cme2_fee"=>$accCmeFee2,
         "a_banquet2" => $a_banquet2,  
-        "a_banquet2_fee" => $a_banquet2_fee,      
+        "a_banquet2_fee" => $accBanqFee2,      
         "a3name" => $_POST['a3name'],
         "a3age" => $_POST['a3age'],
         "accFee3"=>$accFee1,
         "acc_cme3" => $cme3,
         "acc_cme3_fee"=>$accCmeFee3,
         "a_banquet3" => $a_banquet3,  
-        "a_banquet3_fee" => $a_banquet3_fee,      
-        "accompany_total_fee"=>$acc_total,        
-        "banqFee" =>addslashes($banqFee),        
+        "a_banquet3_fee" => $accBanqFee3,      
+        "accompany_total_fee"=>$acc_total,       
+        "registration_total" =>$registration_total, 
         "total_accompany" =>addslashes($total_accompany),
         "designation" =>addslashes($designation),
         "gender" => $gender,
@@ -268,10 +270,9 @@ if (!empty($email)) {
         "cme_reg" => $cme_reg,
         "cmeFee" => $cmeFee,
         "total" => $total,
-        "charges" => $charges,
-        "gtotal" => $gtotal,
         "p_status" => 'Pending',
         "ref" => 'IOACON 2025',
+        "reg_mode"=>'Online',
         "sendmail" =>'0'
     ];
     $user_data = [   
@@ -304,7 +305,7 @@ if (!empty($email)) {
     $upload_name = $_FILES['upload_pg']['name'];
     if ($upload_name != '' && $update_id != '') {
         $qry = '';
-        $target = 'upload_pg/';
+        $target = '../upload_pg/';
         if ($_FILES['upload_pg']['name'] != '') {
             $qry = '';
             $ext = pathinfo($_FILES['upload_pg']['name']);

@@ -1,7 +1,7 @@
 <?php
-require 'db.php';
-require 'config.php';
-require './razorpay-php-master/Razorpay.php';
+require '../db.php';
+require '../config.php';
+require '../razorpay-php-master/Razorpay.php';
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError;
 $success = true;
@@ -30,13 +30,13 @@ try {
     $reg_no = isset($row['reg_no']) ? $row['reg_no'] + 1 : 1;
     $rid = "IOACON" . str_pad($reg_no, 4, "0", STR_PAD_LEFT);
     $update_sql = "UPDATE registration 
-                   SET reg_no = ?, rid = ?, p_status = 'success', TransactionID = ?, tid = ?, credit = ? 
+                   SET reg_no = ?, rid = ?, p_status = 'success', razorpay_payment_id = ?, credit = ? 
                    WHERE email = ? AND del = 0";
     $stmt = mysqli_prepare($conn, $update_sql);
     if (!$stmt) {
         throw new Exception("Database statement preparation failed: " . mysqli_error($conn));
     }
-    mysqli_stmt_bind_param($stmt, "isssss", $reg_no, $rid, $razorpay_payment_id, $razorpay_payment_id, $price, $email);
+    mysqli_stmt_bind_param($stmt, "issss", $reg_no, $rid, $razorpay_payment_id, $price, $email);
     if (!mysqli_stmt_execute($stmt)) {
         throw new Exception("Database update failed: " . mysqli_stmt_error($stmt));
     }

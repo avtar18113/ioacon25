@@ -127,7 +127,13 @@
 
                                                 <div class="col-md-4 mb-3">
                                                     <label for="gender">Gender <span class="text-danger">*</span></label>
-                                                    <input type="text" name="gender" id="gender" class="form-control" value="" required>
+                                                   
+                                                    <select name="gender" id="gender" class="form-control" required>
+                                                        <option value="">Slect Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
 
                                                     <span class="text-danger error_code"></span>
                                                 </div>
@@ -160,8 +166,8 @@
                                                 </div>
 
                                                 <div class="col-md-4 mb-3">
-                                                    <label for="mcn">Medical Council No <span class="text-danger">*</span></label>
-                                                    <input type="text" name="mcn" id="mcn" class="form-control mcn" required>
+                                                    <label for="medical_council_no">Medical Council No <span class="text-danger">*</span></label>
+                                                    <input type="text" name="medical_council_no" id="medical_council_no" class="form-control medical_council_no" required>
                                                     <span class="text-danger error_code"></span>
                                                 </div>
 
@@ -334,7 +340,7 @@
 
                                                         <div class="col-md-2 my-2 px-2">
                                                             <label for="a1age">Age <span class="accAge1 badge bg-secondary"></span></label>
-                                                            <input type="text" name="a1age" id="a1age" class="form-control">
+                                                            <input type="text" name="a1age" id="a1age" class="form-control age">
                                                         </div>
                                                         <div class="col-md-2 my-2 px-2">
                                                             <label for="a_banquet1" class="mr-2">BANQUET *</label>
@@ -364,7 +370,7 @@
 
                                                         <div class="col-md-2 my-2 px-2">
                                                             <label for="a2age">Age <span class="accAge2 badge bg-secondary"></span></label>
-                                                            <input type="text" name="a2age" id="a2age" class="form-control">
+                                                            <input type="text" name="a2age" id="a2age" class="form-control age">
                                                         </div>
 
                                                         <div class="col-md-2 my-2 px-2">
@@ -395,7 +401,7 @@
 
                                                         <div class="col-md-2 my-2 px-2">
                                                             <label for="a3age">Age <span class="accAge3 badge bg-secondary"></span></label>
-                                                            <input type="text" name="a3age" id="a3age" class="form-control">
+                                                            <input type="text" name="a3age" id="a3age" class="form-control age">
                                                         </div>
 
                                                         <div class="col-md-2 my-2 px-2">
@@ -468,7 +474,7 @@
 
     <script src="./assets/js/countrystatecity.js"></script>
     <script type="text/javascript" src="./assets/js/formjs.js"></script>
-    <script type="text/javascript" src="./assets/js/abstract.js"></script>
+    
     <script type="text/javascript" src="./assets/js/multistep.js"></script>
     <!-- End custom js for this page -->
 </body>

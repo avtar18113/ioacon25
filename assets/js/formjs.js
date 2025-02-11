@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    $(".age").on("input", function(e) {
+        let inputAge=e.target.value.replace(/\D/g,'').slice(0,2);
+        e.target.value=inputAge;
+    });
+
     function updateRegistrationCategory() {
         var categorySelect = document.getElementById('regCat');
         var selectedValue = document.getElementById('countryId').value;

@@ -1,6 +1,6 @@
 <?php
-require('config.php');
-require('./razorpay-php-master/Razorpay.php');
+require('../config.php');
+require('../razorpay-php-master/Razorpay.php');
 use Razorpay\Api\Api;
 $api = new Api($keyId, $keySecret);
 //
@@ -9,7 +9,7 @@ $api = new Api($keyId, $keySecret);
 //
 $orderdate=date('ymdhis');
 $randome=rand(111,999);
-$order_id = $orderdate.$randome;
+$order_id = $randome;
 global $order_id;
 // die();
 $price = $amount = $gtotal;
@@ -27,24 +27,25 @@ $razorpayOrder = $api->order->create($orderData);
 $razorpayOrderId = $razorpayOrder['id'];
 $_SESSION['razorpay_order_id'] = $razorpayOrderId;
 $displayAmount = $amount = $orderData['amount'];
-$sql_payment = "UPDATE registration SET OrderID = '$order_id', razorpayOrderId='$razorpayOrderId' WHERE del='0' AND email = '$email' AND srn='$srnReg'";
+$sql_payment = "UPDATE registration SET razorpayOrderId='$razorpayOrderId' WHERE del='0' AND email = '$email' AND srn='$srnReg'";
 // echo $sql_payment;
 // echo $description;
 // die();
 $resultPayment = mysqli_query($conn, $sql_payment);
 // if($resultPayment){echo $resultPayment;}
+
 if ($displayCurrency !== 'INR')
 {
     $url = "https://api.fixer.io/latest?symbols=$displayCurrency&base=INR";
     $exchange = json_decode(file_get_contents($url), true);
-    $displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
+   echo $displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
 }
 $data = [
     "key"               => $keyId,
     "amount"            => $amount,
-    "name"              => "IOACON 2025",
-    "description"       => $description,
-    "image"             => "https://ioacon2025guwahati.com/assets/images/logo/ioacon-logo.webp",
+    "name"              => $siteTitle,
+    "description"       => $regData['description'],
+    "image"             => $siteLogo,
     "prefill"           => [
     "name"              => $customername,
     "email"             => $email,
@@ -52,7 +53,7 @@ $data = [
     ],
     "notes"             => [
     "address"           => "Guwahati",
-    "merchant_order_id" => $order_id,
+    "merchant_order_id" => "IOACON 2025".$order_id,
     ],
     "theme"             => [
     "color"             => "#F37254"
