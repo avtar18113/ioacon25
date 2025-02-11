@@ -33,10 +33,11 @@
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
-        <?php require_once('db.php');
-        include_once('fatch-details.php');
-        $_SESSION['srnReg'] = $srnReg;
-        $_SESSION['description'] = $description;
+        <?php require_once('../db.php');
+       
+        include_once('../common-fatch-code.php');
+        $_SESSION['srnReg'] = $regData['srn'];
+        $_SESSION['description'] = $regData['description'];
         $gtotal=$_SESSION['gtotal'];
         // $gtotal=2;
         ?>
@@ -56,25 +57,25 @@
                         <table class="table table-borderless d-none d-md-block" cellpadding="0" cellspacing="0" border="0">
 <tr>
     <td>Registration ID</td>
-    <td>: <?php echo $rid; ?></td>
+    <td>: <?php {$regData['rid'];} ?></td>
 </tr>
 <tr>
     <td>Name</td>
-    <td>: <?php echo $title; ?> <?php echo $fname; ?> <?php echo $lname; ?></td>
+    <td>: <?php  echo $regData['title'].' '.  $regData['fname'].' '.  $regData['lname']; ?> </td>
 </tr>
 <tr>
     <td>Email</td>
-    <td>: <?php echo $email; ?></td>
+    <td>: <?php echo $regData['email']; ?></td>
 </tr>
 <tr>
     <td>Mobile</td>
-    <td>: <?php echo $mobile; ?></td>
+    <td>: <?php echo $regData['mobile']; ?></td>
 </tr>
 <tr>
     <td>Registration Category</td>
-    <td>: <?php echo $regCat; ?></td>
+    <td>: <?php echo $regData['regCat']; ?></td>
 </tr>
-<?php if($regCat=='Packege Registration'){
+<?php if($regData['regCat']=='Packege Registration'){
     echo '<tr>
     <td>CME</td>
     <td>: Yes</td>
@@ -83,34 +84,34 @@
 <td>: Yes</td>
 </tr>';
 } ?>
-<?php if ($pg_teach_pro != '') { ?>
+<?php if ($regData['pg_teach_pro'] != '') { ?>
     <tr>
         <td>PG Teaching Program</td>
         <td>: <?= $pg_teach_pro ?></a></td>
     </tr>
 <?php } ?>
-<?php if ($workshop != '') { ?>
+<?php if ($regData['workshop'] != '') { ?>
     <tr>
         <td>Workshop</td>
-        <td>: <?= $workshop ?></a></td>
+        <td>: <?= $regData['workshop'] ?></a></td>
     </tr>
 <?php } ?>
-<?php if ($upload_pg != '') { ?>
+<?php if ($regData['upload_pg'] != '') { ?>
     <tr>
         <td>Upload File</td>
-        <td>: <a href="upload_pg/<?= $upload_pg ?>">View File</a></td>
+        <td>: <a href="upload_pg/<?= $regData['upload_pg'] ?>">View File</a></td>
     </tr>
 <?php } ?>
-<?php if ($mem_id != '') { ?>
+<?php if ($regData['mem_id'] != '') { ?>
     <tr>
         <td>Membership No. </td>
-        <td>: <?= $mem_id ?></td>
+        <td>: <?= $regData['mem_id'] ?></td>
     </tr>
 <?php } ?>
-<?php if ($accPerson > 0) { ?>
+<?php if ($regData['total_accompany'] > 0) { ?>
     <tr>
         <td>Number of Accompany person </td>
-        <td>: <?= $accPerson ?></td>
+        <td>: <?= $regData['total_accompany'] ?></td>
     </tr>
     <tr class="bg-light">
         <td colspan="2"><strong><center>Accompany Person(s)</center> </strong><br>
@@ -120,25 +121,25 @@
                     <th>Banquet</th>
                     <th>CME</th>
                 </tr>
-                <?php if ($a1name != '') { ?>
+                <?php if ($regData['a1name'] != '') { ?>
                     <tr>
-                        <td><?php echo $a1name; ?></td>
-                        <td><?php echo $a_banquet1; ?></td>
-                        <td><?php echo $acc_cme1; ?></td>
+                        <td><?php echo $regData['a1name']; ?></td>
+                        <td><?php echo $regData['a_banquet1']; ?></td>
+                        <td><?php echo $regData['acc_cme1']; ?></td>
                     </tr>
                 <?php } ?>
-                <?php if ($a2name != '') { ?>
+                <?php if ($regData['a2name'] != '') { ?>
                     <tr>
-                        <td><?php echo $a2name; ?></td>
-                        <td><?php echo $a_banquet2; ?></td>
-                        <td><?php echo $acc_cme2; ?></td>
+                        <td><?php echo $regData['a2name']; ?></td>
+                        <td><?php echo $regData['a_banquet2']; ?></td>
+                        <td><?php echo $regData['acc_cme2']; ?></td>
                     </tr>
                 <?php } ?>
-                <?php if ($a3name != '') { ?>
+                <?php if ($regData['a3name'] != '') { ?>
                     <tr>
-                        <td><?php echo $a3name; ?></td>
-                        <td><?php echo $a_banquet3; ?></td>
-                        <td><?php echo $acc_cme3; ?></td>
+                    <td><?php echo $regData['a3name']; ?></td>
+                        <td><?php echo $regData['a_banquet3']; ?></td>
+                        <td><?php echo $regData['acc_cme3']; ?></td>
                     </tr>
                 <?php } ?>
             </table>
@@ -159,7 +160,7 @@
 <tr>
     <td><b>Mobile:</b> <?php echo $mobile; ?></td>
 </tr>
-<?php if ($r_banquet2 > 0) { ?>
+<?php if ($regData['r_banquet2'] > 0) { ?>
     <tr>
         <td>Additional Banquet:</td>
         <td><?php echo $r_banquet2; ?></td>
@@ -168,27 +169,27 @@
 <tr>
     <td><b>Registration Category:</b> <?php echo $regCat; ?></td>
 </tr>
-<?php if ($pg_teach_pro != '') { ?>
+<?php if ($regData['pg_teach_pro'] != '') { ?>
     <tr>
         <td><b>PG Teaching Program</b>: <?= $pg_teach_pro ?></a></td>
     </tr>
 <?php } ?>
-<?php if ($workshop != '') { ?>
+<?php if ($regData['workshop'] != '') { ?>
     <tr>
         <td><b>Workshop:</b> <?= $workshop ?></a></td>
     </tr>
 <?php } ?>
-<?php if ($upload_pg != '') { ?>
+<?php if ($regData['upload_pg'] != '') { ?>
     <tr>
         <td><b>Upload File:</b> <a href="upload_pg/<?= $upload_pg ?>">View File</a></td>
     </tr>
 <?php } ?>
-<?php if ($mem_id != '') { ?>
+<?php if ($regData['mem_id'] != '') { ?>
     <tr>
         <td><b>Membership No.:</b> <?= $mem_id ?></td>
     </tr>
 <?php } ?>
-<?php if ($accPerson > 0) { ?>
+<?php if ($regData['total_accompany'] > 0) { ?>
     <tr>
         <td><b>Number of Accompany person:</b> <?= $accPerson ?></td>
     </tr>
@@ -198,23 +199,23 @@
     <tr class="bg-light">
         <td><br>
             <table class="table table-borderless m-0" cellpadding="1" cellspacing="0" border="1" width="100%" style="border: 1px solid #ccc; font-size:12px; line-height:18px;">
-                <?php if ($a1name != '') { ?>
+                <?php if ($regData['a1name'] != '') { ?>
                     <tr><td><center><b>Accompany person: 1</b></center></td></tr>
-                    <tr><td><?php echo '<strong>Name: </strong>'.$a1name; ?></td></tr>
-                    <tr><td><?php echo '<strong>Banquet: </strong>'.$a_banquet1; ?></td></tr>
-                    <tr><td><?php echo '<strong>CME: </strong>'.$acc_cme1; ?></td></tr>
+                    <tr><td><?php echo '<strong>Name: </strong>'.$regData['a1name']; ?></td></tr>
+                    <tr><td><?php echo '<strong>Banquet: </strong>'.$regData['a_banquet1']; ?></td></tr>
+                    <tr><td><?php echo '<strong>CME: </strong>'.$regData['acc_cme1']; ?></td></tr>
                 <?php } ?>
-                <?php if ($a2name != '') { ?>
+                <?php if ($regData['a2name'] != '') { ?>
                 <tr><td><center><b>Accompany person: 2</b></center></td></tr>
-                    <tr><td><?php echo '<strong>Name: </strong>'.$a2name; ?></td></tr>
-                    <tr><td><?php echo '<strong>Banquet: </strong>'.$a_banquet2; ?></td></tr>
-                    <tr><td><?php echo '<strong>CME: </strong>'.$acc_cme2; ?></td></tr>
+                    <tr><td><?php echo '<strong>Name: </strong>'.$regData['a2name']; ?></td></tr>
+                    <tr><td><?php echo '<strong>Banquet: </strong>'.$regData['a_banquet2']; ?></td></tr>
+                    <tr><td><?php echo '<strong>CME: </strong>'.$regData['acc_cme2']; ?></td></tr>
                 <?php } ?>
-                <?php if ($a3name != '') { ?>
+                <?php if ($regData['a3name'] != '') { ?>
                 <tr><td><center><b>Accompany person: 3</b></center></td></tr>
-                    <tr><td><?php echo '<strong>Name: </strong>'.$a3name; ?></td></tr>
-                    <tr><td><?php echo '<strong>Banquet: </strong>'.$a_banquet3; ?></td></tr>
-                    <tr><td><?php echo '<strong>CME: </strong>'.$acc_cme3; ?></td></tr>
+                    <tr><td><?php echo '<strong>Name: </strong>'.$regData['a3name']; ?></td></tr>
+                    <tr><td><?php echo '<strong>Banquet: </strong>'.$regData['a_banquet3']; ?></td></tr>
+                    <tr><td><?php echo '<strong>CME: </strong>'.$regData['acc_cme3']; ?></td></tr>
                 <?php } ?>
             </table>
         </td>
@@ -237,49 +238,49 @@
                                                     <td>Registration Fee</td>
                                                     <td>: <?php echo $reg_fee; ?></td>
                                                 </tr>
-                                                <?php if ($wrk_fee > 0) { ?>
+                                                <?php if ($regData['wrk_fee'] > 0) { ?>
                                                     <tr>
                                                         <td>Workshop Fee</td>
                                                         <td>: <?php echo $wrk_fee; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if ($pg_teach_fee > 0) { ?>
+                                                <?php if ($regData['pg_teach_fee'] > 0) { ?>
                                                     <tr>
                                                         <td>PG Teaching Program Fee</td>
                                                         <td>: <?php echo $pg_teach_fee; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if ($r_banquet2 > 0) { ?>
+                                                <?php if ($regData['r_banquet2'] > 0) { ?>
                                                     <tr>
                                                         <td>Additional Banquet Fee</td>
                                                         <td>: <?php echo $banqFee2; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if ($cmeFee > 0) { ?>
+                                                <?php if ($regData['cmeFee'] > 0) { ?>
                                                     <tr>
                                                         <td>CME Fee</td>
                                                         <td>: <?php echo $cmeFee; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if ($banqFee > 0) { ?>
+                                                <?php if ($regData['banqFee'] > 0) { ?>
                                                     <tr>
                                                         <td>Banquet Fee</td>
                                                         <td>: <?php echo $banqFee; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                 <?php if ($acc_fee > 0) { ?>
+                                                 <?php if ($regData['acc_fee'] > 0) { ?>
                                                 <tr>
                                                     <td>Accompanying Fee</td>
                                                     <td>: <?php echo $acc_fee; ?></td>
                                                 </tr>
                                                 <?php } ?>
-                                                <?php if ($accCmeTotal > 0) { ?>
+                                                <?php if ($regData['accCmeTotal'] > 0) { ?>
                                                     <tr>
                                                         <td>Accompanying CME Fee</td>
                                                         <td>: <?php echo $accCmeTotal; ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if ($accBanqTotal > 0) { ?>
+                                                <?php if ($regData['accBanqTotal'] > 0) { ?>
                                                     <tr>
                                                         <td>Accompanying Banquet Fee</td>
                                                         <td>: <?php echo $accBanqTotal; ?></td>
@@ -289,7 +290,7 @@
                                                     <td><strong>Total</strong></td>
                                                     <td><strong>: <?php echo $total; ?></strong></td>
                                                 </tr>
-                                                <?php if ($charges > 0) { ?>
+                                                <?php if ($regData['charges'] > 0) { ?>
                                                 <tr>
                                                     <td><strong>Processing Charges</strong></td>
                                                     <td><strong>: <?php echo $charges; ?></strong></td>
@@ -304,7 +305,7 @@
                                         </div>
                                     </div>
                                      <?php
-                                                if ($p_status != 'success') {
+                                                if ($regData['p_status'] != 'success') {
                                                 ?> <div class="row">
                                             <div class="col-6 my-2"> 
                                                 <input type="button" value="BACK & Edit" id="next-btn" class="btn btn-danger" name="back-to" onclick="history.back()"> </td>  

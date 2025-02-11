@@ -1,8 +1,4 @@
-<?php
-// session_start();
 
-
-?>
 <!-- // Check if session is empty, redirect to login page if necessary -->
 
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -21,7 +17,7 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="assets/images/user-icon.webp" alt="image">
+                        <img src="<?=$BASE_URL?>/assets/images/user-icon.webp" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
@@ -30,10 +26,10 @@
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
 
-                    <a class="dropdown-item" href="./view-profile.php">
+                    <a class="dropdown-item" href="<?=$BASE_URL?>/pages/view-profile">
                         <i class="mdi mdi-account-circle me-2 text-primary"></i>View Profile </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="./logout.php">
+                    <a class="dropdown-item" href="<?=$BASE_URL?>/logout">
                         <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
 
                 </div>
@@ -41,7 +37,7 @@
 
 
             <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="./logout.php">
+                <a class="nav-link" href="<?=$BASE_URL?>/logout">
                     <i class="mdi mdi-power"></i>
                 </a>
             </li>

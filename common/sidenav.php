@@ -17,19 +17,19 @@
           </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="home.php">
+          <a class="nav-link" href="<?=$BASE_URL?>/home">
               <span class="menu-title">Dashboard</span>
               <i class="mdi mdi-home menu-icon"></i>
           </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="./pages/index.php">
+          <a class="nav-link" href="<?=$BASE_URL?>/register-now">
               <span class="menu-title">Register Now</span>
               <i class="mdi mdi-laptop menu-icon"></i>
           </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="./abs-index.php">
+          <a class="nav-link" href="<?=$BASE_URL?>/abs-index">
               <span class="menu-title">Abstract Submission</span>
               <i class="mdi mdi-laptop menu-icon"></i>
           </a>
@@ -44,28 +44,28 @@
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="./page.php?id=view-profile">View Profile <i class="mdi mdi-face-profile menu-icon"></i></a>
+                    <a class="nav-link" href="<?=$BASE_URL?>/pages/view-profile">View Profile <i class="mdi mdi-face-profile menu-icon"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./page.php?id=view-application"> View Application <i class="mdi mdi-eye menu-icon"></i></a>
+                    <a class="nav-link" href="<?=$BASE_URL?>/pages/view-application"> View Application <i class="mdi mdi-eye menu-icon"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./page.php?id=view-abstract">View Abstract <i class="mdi mdi-eye menu-icon"></i></a>
+                    <a class="nav-link" href="<?=$BASE_URL?>/pages/view-abstract">View Abstract <i class="mdi mdi-eye menu-icon"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./pages/view-receipt">View Receipt <i class="mdi mdi-eye menu-icon"></i></a>
+                    <a class="nav-link" href="<?=$BASE_URL?>/pages/view-receipt">View Receipt <i class="mdi mdi-eye menu-icon"></i></a>
                 </li>
             </ul>
           </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="addon.php">
+          <a class="nav-link" href="<?=$BASE_URL?>/addon.php">
               <span class="menu-title">Addon</span>
               <i class="mdi mdi-chart-bar menu-icon"></i>
           </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="support.php">
+          <a class="nav-link" href="<?=$BASE_URL?>/support.php">
               <span class="menu-title">Registration Support</span>
               <i class="mdi mdi-table-large menu-icon"></i>
           </a>

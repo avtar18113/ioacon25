@@ -1,6 +1,6 @@
 <?php
-include ('db.php');
-include ('slab.php');
+include ('../db.php');
+include ('../slab.php');
 if (empty($_POST['email'])) {
     $email = '';
 } else {
@@ -24,7 +24,7 @@ if (!empty($email)) {
         (isset($_POST['city'])) ? $city = $_POST['city'] : $city = null;
         (isset($_POST['pincode'])) ? $pincode = $_POST['pincode'] : $pincode = null;
         (isset($_POST['mem_id'])) ? $mem_id = $_POST['mem_id'] : $mem_id = null;
-        (isset($_POST['accPerson'])) ? $accPerson = $_POST['accPerson'] : $accPerson = null;
+        (isset($_POST['accPerson'])) ? $total_accompany = $_POST['accPerson'] : $total_accompany = null;
         (isset($_POST['workshop_option_name'])) ? $workshop_option_name = $_POST['workshop_option_name'] : $workshop_option_name = null;
     // Fixing the condition for 'ICS/NCCP Members' and 'Non Member'
     if ($regCat == $cat1) {
@@ -118,9 +118,9 @@ if (!empty($email)) {
     $cme2=$_POST['cme2'];
     $a_banquet3=$_POST['a_banquet3'];
     $cme3=$_POST['cme3'];
-	if ($accPerson>0) {
+	if ($total_accompany>0) {
 		if ($regCat == $cat1) {  
-            $acc_fee = $accPerson*$acc_fee;          
+            $acc_fee = $total_accompany*$acc_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme_fee; }else{$accCmeFee3=0;}
@@ -130,7 +130,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;
         } else if($regCat == $cat2) {           
-            $acc_fee = $accPerson*$acc_fee;          
+            $acc_fee = $total_accompany*$acc_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme_fee; }else{$accCmeFee3=0;}
@@ -140,7 +140,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;        
         } else if($regCat == $cat3) {            
-            $acc_fee = $accPerson*$acc_fee;          
+            $acc_fee = $total_accompany*$acc_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme_fee; }else{$accCmeFee3=0;}
@@ -150,7 +150,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;          
         }else if($regCat == $cat4) {           
-            $acc_fee = $accPerson*$acc1_fee;          
+            $acc_fee = $total_accompany*$acc1_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme1_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme1_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme1_fee; }else{$accCmeFee3=0;}
@@ -160,7 +160,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;            
         }else if($regCat == $cat5) {          
-            $acc_fee = $accPerson*$acc1_fee;          
+            $acc_fee = $total_accompany*$acc1_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme1_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme1_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme1_fee; }else{$accCmeFee3=0;}
@@ -170,7 +170,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;             
         }else if($regCat == $cat6) {           
-            $acc_fee = $accPerson*$acc1_fee;          
+            $acc_fee = $total_accompany*$acc1_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme1_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme1_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme1_fee; }else{$accCmeFee3=0;}
@@ -180,7 +180,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3; 
         }else if($regCat == $cat7) {            
-            $acc_fee = $accPerson*$acc_fee;          
+            $acc_fee = $total_accompany*$acc_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme_fee; }else{$accCmeFee3=0;}
@@ -190,7 +190,7 @@ if (!empty($email)) {
             $accCmeTotal=$accCmeFee1+$accCmeFee2+$accCmeFee3;
             $accBanqTotal=$accBanqFee1+$accBanqFee2+$accBanqFee3;
         }else if($regCat == $cat8) {            
-            $acc_fee = $accPerson*$acc_fee;          
+            $acc_fee = $total_accompany*$acc_fee;          
             if($cme1 =='Yes'){ $accCmeFee1=$acc_cme_fee; }else{$accCmeFee1=0;}
             if($cme2 =='Yes'){ $accCmeFee2=$acc_cme_fee; }else{$accCmeFee2=0;}
             if($cme3 =='Yes'){ $accCmeFee3=$acc_cme_fee; }else{$accCmeFee3=0;}
@@ -202,7 +202,7 @@ if (!empty($email)) {
         }
 	}else{$acc_fee=0; $accCmeTotal=0;
         $accBanqTotal=0;}
-        $accFee1=($acc_fee/$accPerson);
+        $accFee1=($acc_fee/$total_accompany);
     $acc_total= $acc_fee + $accCmeTotal + $accBanqTotal;
     $reg_total=$reg_fee+$cmeFee+$wrk_fee+$banqFee+$pg_teach_fee+$banqFee2;
     $total = $reg_total + $acc_total;
@@ -216,7 +216,7 @@ if (!empty($email)) {
     $query = mysqli_query($conn, "SELECT srn, email FROM registration WHERE del = '0' AND email = '" . trim($email) . "'");
     $select = mysqli_num_rows($query);
     $sql_data = [
-        "userId" => $_POST['userId'],
+        "title" => $_POST['title'],        
         "fname" => $_POST['fname'],
         "lname" => $_POST['lname'],
         "mobile" => $_POST['mobile'],
@@ -225,7 +225,8 @@ if (!empty($email)) {
         "country" => $_POST['country'],
         "state" => $_POST['state'],
         "city" => $_POST['city'], 
-        "pincode" => $_POST['pincode'],
+        "pincode" => $_POST['pincode'],        
+        "c_code" => $_POST['c_code'],
         "mem_id" => $_POST['mem_id'],
         "a1name" => $_POST['a1name'],
         "a1age" => $_POST['a1age'],
@@ -233,33 +234,36 @@ if (!empty($email)) {
         "acc_cme1" => $cme1,
         "acc_cme1_fee"=>$accCmeFee1,
         "a_banquet1" => $a_banquet1,
-        "a_banquet1_fee"=>$accBanqFee1,
+        "a_banquet1_fee" => $a_banquet1_fee,
         "a2name" => $_POST['a2name'],
         "a2age" => $_POST['a2age'],
         "accFee2"=>$accFee1,
         "acc_cme2" => $cme2,
         "acc_cme2_fee"=>$accCmeFee2,
-        "a_banquet2" => $a_banquet2,
-        "a_banquet2_fee"=>$accBanqFee2,
+        "a_banquet2" => $a_banquet2,  
+        "a_banquet2_fee" => $a_banquet2_fee,      
         "a3name" => $_POST['a3name'],
         "a3age" => $_POST['a3age'],
         "accFee3"=>$accFee1,
         "acc_cme3" => $cme3,
         "acc_cme3_fee"=>$accCmeFee3,
-        "a_banquet3" => $a_banquet3,
-        "a_banquet3_fee"=>$accBanqFee3,
-        "accompany_total_fee"=>$acc_total,
-        "reg_total"=>$reg_total,
+        "a_banquet3" => $a_banquet3,  
+        "a_banquet3_fee" => $a_banquet3_fee,      
+        "accompany_total_fee"=>$acc_total,        
         "banqFee" =>addslashes($banqFee),        
-        "accPerson" =>addslashes($accPerson),
+        "total_accompany" =>addslashes($total_accompany),
         "designation" =>addslashes($designation),
         "gender" => $gender,
+        "institute"=>$institute,
         "r_banquet" => $r_banquet,
         "bnq_fee" => $banqFee,
+        "pg_teach_pro"=>$pg_teach_pro,
+        "pg_teach_fee"=>$pg_teach_fee,
         "reg_typ" => $_POST['reg_typ'],
         "regCat" => $regCat,
         "reg_fee" => $reg_fee,
         "workshop" => $workshop,
+        "workshop_option_name"=>$workshop_option_name,
         "wrk_fee" => $wrk_fee,
         "cme_reg" => $cme_reg,
         "cmeFee" => $cmeFee,
@@ -270,12 +274,32 @@ if (!empty($email)) {
         "ref" => 'IOACON 2025',
         "sendmail" =>'0'
     ];
+    $user_data = [   
+        "title" => $_POST['title'],     
+        "fname" => $_POST['fname'],
+        "lname" => $_POST['lname'],
+        "c_code" => $_POST['c_code'],
+        "mobile" => $_POST['mobile'],
+        "email" => $_POST['email'],  
+        "address" => $_POST['address'],        
+        "country" => $_POST['country'],
+        "state" => $_POST['state'],
+        "city" => $_POST['city'], 
+        "pincode" => $_POST['pincode'], 
+        "gender" => $gender,               
+        "reg_status" =>'0'
+    ];
     if ($select > 0) {
         $row = mysqli_fetch_array($query);
         $update_id = $row['srn'];
         $sql = "UPDATE registration SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data)) . " WHERE del = '0' AND email = '$email'";
+
+        $sql_user = "UPDATE users SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($user_data), $user_data)) . " WHERE email = '$email'";
+
     } else {
         $sql = "INSERT INTO registration SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data));
+
+        $sql_user = "INSERT INTO users SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($user_data), $user_data));
     }
     $upload_name = $_FILES['upload_pg']['name'];
     if ($upload_name != '' && $update_id != '') {
@@ -297,8 +321,10 @@ if (!empty($email)) {
         }
     }
     $result = mysqli_query($conn, $sql);
-    if ($result) {
-        echo "<script>window.location.href='check-out.php';</script>";
+    $result_user = mysqli_query($conn, $sql_user);
+    
+    if ($result && $result_user) {
+        echo "<script>window.location.href='../pages/check-out.php';</script>";
     } else {
         echo 'Failed';
     }

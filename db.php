@@ -6,7 +6,7 @@ $dt_tm = date("l jS \of F Y h:i:s A");
 // Check if the website is running on localhost
 if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['SERVER_ADDR'] == 'https://ioacon2025guwahati.com') {
     $host = "localhost";
-    $db = "ioacon24";
+    $db = "ioacon25";
     $username = "root";
     $password = "";
 } else {
