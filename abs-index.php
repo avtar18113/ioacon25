@@ -22,11 +22,10 @@ include_once('config.php');
                     <img class="w-100" src="<?= $siteHeaderImage ?>" alt="IOACON Header Image">
                     <h2 class="mb-0 text-center sub-heading">Abstract Submission</h2>
                     <div class="row px-lg-5 p-3">
-                    <div class="col-md-4 my-2 mb-3">
+                        <div class="col-md-4 my-2 mb-3">
                             <label for="email1">Email <span class="text-danger">*</span></label>
                             <input type="email" name="email" id="email1" class="form-control email-input" required>
                             <p id="email1_error"></p>
-
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="mobile">Mobile <span class="text-danger">*</span></label>

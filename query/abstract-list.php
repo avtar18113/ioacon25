@@ -1,5 +1,5 @@
 <?php
-$email='dryashaswan@gmail.com';
+
 $sql = "SELECT * FROM abstract WHERE email='$email'";
 $result = mysqli_query($conn, $sql);
 

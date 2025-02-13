@@ -5,7 +5,7 @@ if (empty($_SESSION['userId'])) {
     exit();
 }
 
-$email = $_SESSION['email']='design@concepttc.com';
+echo $email = $_SESSION['email'];
 
 // Fetch user data from the database
 $userQuery = "SELECT * FROM users WHERE email='$email'";

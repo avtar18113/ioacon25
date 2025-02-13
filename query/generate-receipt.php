@@ -3,7 +3,7 @@ include_once '../db.php';
 include_once 'num_to_word.php';
 include_once '../config.php';
 
-$email='dryashaswan@gmail.com';
+
 // $sql = "SELECT * FROM registration WHERE del = '0' AND email = '$email'";
 $sql = "SELECT * FROM registration WHERE email = '$email'";
 $result = mysqli_query($conn, $sql);
@@ -50,8 +50,7 @@ if (mysqli_num_rows($result) > 0) {
         $acc_cme3 = $row[ 'acc_cme3' ];
         $a_banquet_fee = $row[ 'a_banquet_fee' ];
         $acc_total = $row[ 'acc_total' ];
-        $total = $row[ 'total' ];
-        $gtotal = $row[ 'gtotal' ];
+        $total = $row[ 'total' ];        
         $charges = $row[ 'charges' ];
         $ref = $row[ 'ref' ];
         $p_status = $row[ 'p_status' ];
@@ -65,17 +64,17 @@ if (mysqli_num_rows($result) > 0) {
         $banqFee2 = $row[ 'banqFee2' ];
     }
 }
-$gtotal = $gtotal . '.00';
-$get_amount = AmountInWords($gtotal);
+$total = $total . '.00';
+$get_amount = AmountInWords($total);
 require_once('../TCPDF/tcpdf.php');
 class MYPDF extends TCPDF
  {
     //Page header
     public function Header()
     {
-        // $image_file = $siteHeaderImage;
-        $image_file ='../assets/images/ioacon-mailer-header.webp';
-        $this->Image($image_file, 0, 0, 210, 0, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // $siteHeaderImage = $siteHeaderImage;
+      
+        $this->Image($siteHeaderImage, 0, 0, 210, 0, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
     // Page footer
     public function Footer()
@@ -176,7 +175,7 @@ $dacc_fee
 $daccCmeTotal
 $dpg_teach_fee
 $dbanqFee2
-<tr><th><strong>Total Fee</strong></th><th>$gtotal</th></tr>
+<tr><th><strong>Total Fee</strong></th><th>$total</th></tr>
 </table>
 ";
 $cancelHeading = <<<EOD

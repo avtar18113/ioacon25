@@ -4,7 +4,7 @@ include_once '../db.php';
 include_once '../smtp/PHPMailerAutoload.php';
 $sitePath = 'https://ioacon2025guwahati.com';
 $regPath = 'https://concepttc.com/registration/ioacon25/regsubmit';
-$_SESSION['email']='design@concepttc.com';
+
 
 
 if($_SESSION['email']!=''){

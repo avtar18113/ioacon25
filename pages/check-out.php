@@ -90,6 +90,12 @@
         <td><?php echo $regData['r_banquet']; ?></td>
     </tr>
 <?php } ?>
+<?php if ($regData['cme_reg'] !='') { ?>
+    <tr>
+        <td>CME:</td>
+        <td><?php echo $regData['cme_reg']; ?></td>
+    </tr>
+<?php } ?>
 <?php if ($regData['pg_teach_pro'] != '') { ?>
     <tr>
         <td>PG Teaching Program</td>
