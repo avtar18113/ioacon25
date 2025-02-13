@@ -1,5 +1,5 @@
 <?php
-$crlf = "\r\n";
+$crlf = '\r\n';
 $message = "
 <table cellpadding='0' cellspacing='0' border='0'
 style='font-family: sans-serif; font-size:14px; line-height:18px; color:#505050; background:#f8f9fa; width:100%; max-width:720px; margin:3em auto;border-collapse:collapse;'>
@@ -28,8 +28,7 @@ style=' width:100%; border-collapse:collapse; border: 1px solid #e8e8e8;'>
 <td style='padding: 10px;'>$gender</td>
 </tr>
 ";
-if ($reg_no) 
-{
+if ($reg_no) {
     $message .= "<tr><td width='30%' style='padding: 10px;'>Registration No.</td><td style='padding: 10px;'>$reg_no</td></tr>";
 }
 if ($member) {
@@ -263,28 +262,28 @@ $message .= "
 </tr>
 </table>
 ";
-//die($message);
-$crlf = "\r\n";
+//die( $message );
+$crlf = '\r\n';
 $to = $email;
-$subject = "IOACON 2025 Abstract Submission";
+$subject = 'IOACON 2025 Abstract Submission';
 include('../smtp/PHPMailerAutoload.php');
 $mail = new PHPMailer();
-// 	$mail->SMTPDebug=3;
+// 	$mail->SMTPDebug = 3;
 $mail->IsSMTP();
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'ssl';
-$mail->Host = "localhost";
-$mail->Port = "465";
+$mail->Host = 'localhost';
+$mail->Port = '465';
 $mail->IsHTML(true);
 $mail->CharSet = 'UTF-8';
-$mail->Username = "mail@concepttc.com";
+$mail->Username = 'mail@concepttc.com';
 $mail->Password = 'fs1t)k47t4pE';
-$mail->SetFrom("mail@concepttc.com", "IOACON 2025");
+$mail->SetFrom('mail@concepttc.com', 'IOACON 2025');
 $mail->Subject = $subject;
 $mail->Body = $message;
 $mail->AddAddress($to);
-$mail->AddCC("registration@concepttc.com");
-// $mail->AddReplyTo("operations@concepttc.com");
+$mail->AddCC('registration@concepttc.com');
+// $mail->AddReplyTo( 'operations@concepttc.com' );
 $mail->SMTPOptions = array('ssl' => array(
     'verify_peer' => false,
     'verify_peer_name' => false,
@@ -293,7 +292,8 @@ $mail->SMTPOptions = array('ssl' => array(
 if (!$mail->Send()) {
     echo "<script> alert('Server error, please try later.'); </script>";
     echo "<script>window.location.href = '../index.php';</script>";
-} else {    
+} else {
+
     mysqli_query($conn, "update abstract_submissions SET send_mail='1' WHERE id=$insert_id");
-    echo "<script>window.location.href = '../success-abstract.php';</script>";
+    echo "<script>window.location.href = '../home';</script>";
 }

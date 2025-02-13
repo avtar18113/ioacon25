@@ -6,6 +6,9 @@ include_once('config.php');
 <?php include_once('./common/head.php'); ?>
 
 <body>
+    <style>
+        .form-control,.form-select{border: 1px solid black;}
+    </style>
     <div class="container-scroller">
         <?php  include_once('./db.php'); include_once('./common-fatch-code.php'); include_once('./common/topnav.php'); ?>
         <!-- partial -->
@@ -24,59 +27,43 @@ include_once('config.php');
                     <div class="row px-lg-5 p-3">
                         <div class="col-md-4 my-2 mb-3">
                             <label for="email1">Email <span class="text-danger">*</span></label>
-                            <input type="email" name="email" id="email1" class="form-control email-input" required>
-                            <p id="email1_error"></p>
+                            <input type="email" class="form-control email-input"  value="<?= $regData['email'] ?>" readonly>
+                            <input type="hidden" name="email" id="email1" class="form-control email-input"  value="<?= $regData['email'] ?>">
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="mobile">Mobile <span class="text-danger">*</span></label>
-                            <input type="text" name="mobile" id="mobile" class="form-control mobile" required>
+                            <input type="text" name="mobile" id="mobile" class="form-control mobile" value="<?= $regData['mobile'] ?>" readonly>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="reg_no">Conference Registration No <span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="reg_no" id="reg_no" class="form-control" readonly>
+                            <input type="text" name="reg_no" id="reg_no" class="form-control" value="<?= $regData['rid'] ?>" readonly>
+                            <input type="hidden" name="reg_no" id="reg_no" class="form-control" value="<?= $regData['rid'] ?>">
                         </div>
-                        <div class="col-md-2 my-2 mb-3">
-                            <input type="hidden" name="userId" id="userId" class="form-control"
-                                value="">
-                            <label for="title">Title<span class="text-danger">*</span></label>
-                            <select name="title" class="form-control form-select" required>
-                                <option value="">Select Title</option>
-                                <option value="Prof.">Prof.</option>
-                                <option value="Dr.">Dr.</option>
-                                <option value="Mr.">Mr.</option>
-                                <option value="Ms.">Ms.</option>
-                                <option value="Mrs.">Mrs.</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 my-2 mb-3">
+                        
+                        <div class="col-md-8 my-2 mb-3">
                             <label for="fname">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" name="fname" id="fname" class="form-control" required>
+                            <input type="text" name="fname" id="fname" class="form-control" value="<?php  echo $regData['title'].' '.  $regData['fname'].' '.  $regData['lname']; ?>" readonly>
                         </div>
                         <div class="col-md-2 my-2 mb-3">
                             <label for="gender">Gender <span class="text-danger">*</span></label>
-                            <select name="gender" class="form-control form-select" required>
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-
-                            </select>
+                            <input name="gender" class="form-control" value="<?= $regData['gender'] ?>" readonly>
+                            
 
                         </div>
                         
-                        <div class="col-md-4 my-2 mb-3">
+                        <div class="col-md-2 my-2 mb-3">
                             <label for="age">Age<span class="text-danger">*</span></label>
-                            <input type="text" name="age" id="age" class="form-control age" required>
+                            <input type="text" name="age" id="age" class="form-control age" value="<?= $regData['age'] ?>" >
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="designation">Designation <span class="text-danger">*</span></label>
-                            <input type="text" name="designation" id="designation" class="form-control"
-                                required>
+                            <input type="text" name="designation" id="designation" class="form-control" value="<?= $regData['designation'] ?>"
+                                readonly>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="institute">Institute <span class="text-danger">*</span></label>
-                            <input type="text" name="institute" id="institute" class="form-control" required>
+                            <input type="text" name="institute" id="institute" class="form-control" value="<?= $regData['institute'] ?>" required>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="yearof_mbbs">Year of Passing MBBS <span class="text-danger">*</span></label>
@@ -85,32 +72,29 @@ include_once('config.php');
                         </div>
                         <div class="col-md-12 my-2 mb-3 d-none">
                             <label for="address">Address <span class="text-danger">*</span></label>
-                            <textarea type="text" name="address" id="address" class="form-control" rows="4"></textarea>
+                            <textarea type="text" name="address" id="address" class="form-control" rows="4"><?= $regData['address'] ?>"</textarea>
                         </div>
                     </div>
                     <div class="row px-lg-5 p-3 justify-content-between">
-                        <div class="col-md-4 my-2 mb-3">
-                            <label for="Country">Country <span class="text-danger">*</span></label>
-                            <select name="country" class="countries form-control form-select" id="countryId" required>
-                                <option value="">Select Country</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 my-2 mb-3">
-                            <label for="state">State <span class="text-danger">*</span></label>
-                            <select name="state" class="states form-control form-select" id="stateId" required>
-                                <option value="">Select State</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 my-2 mb-3">
-                            <label for="city">City <span class="text-danger"></span></label>
-                            <select name="city" class="cities form-control form-select" id="cityId">
-                                <option value="">Select City</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 my-2 mb-3 d-none">
-                            <label for="pincode">PIN/ZIP Code</label>
-                            <input type="text" name="pincode" id="pincode" class="form-control">
-                        </div>
+                    <div class="col-md-4 pe-2 mb-3">
+                                    <label for="Country">Country <span class="text-danger">*</span></label>
+                                    <input name="country" class="countries form-control" id="countryId" value="<?= $regData['country'] ?>" readonly>
+                                    
+                                </div>
+                                <div class="col-md-4 pe-2 mb-3">
+                                    <label for="state">State <span class="text-danger">*</span></label>
+                                    <input name="state" class="states form-control" id="stateId" value="<?= $regData['state'] ?>" readonly>
+                                   
+                                </div>
+                                <div class="col-md-4 pe-2 mb-3">
+                                    <label for="city">City <span class="text-danger"></span></label>
+                                    <input name="city" class="cities form-control" id="cityId" value="<?= $regData['city'] ?>" readonly>
+                                    
+                                </div>
+                                <div class="col-md-4 pe-2 mb-3">
+                                    <label for="pincode">PIN/ZIP Code<span class="text-danger">*</span></label>
+                                    <input type="text" name="pincode" id="pincode" class="form-control" value="<?= $regData['pincode'] ?>" readonly>
+                                </div>
                     </div>
                     <div class="sub-heading">
                         <h4 class="mb-4 text-center">Co Authors Details</h4>
@@ -239,7 +223,7 @@ include_once('config.php');
                         <div class="col-md-4 my-2">
                             <label for="presentation">Type of Presentation <span
                                     class="text-danger">*</span></label>
-                            <select name="type_of_presentation" id="abs-presentation" class="form-control form-select" required>
+                            <select name="type_of_presentation" id="abs-presentation" class="form-select" required>
                                 <option value="">Choose...</option>
                                 <option value="Free Paper">Free Paper</option>
                                 <option value="Award Paper">Award Paper</option>
@@ -249,7 +233,7 @@ include_once('config.php');
                         </div>
                         <div class="col-md-4 my-2" id="memberSection" style="display:none">
                             <label for="memberOption">Are You Member<span class="text-danger">*</span></label>
-                            <select name="member_option" id="memberOption" class="form-control form-select">
+                            <select name="member_option" id="memberOption" class="form-select">
                                 <option value="">Choose...</option>
                                 <option value="No">No</option>
                                 <option value="Life Member">Life Member</option>
@@ -263,20 +247,20 @@ include_once('config.php');
                         </div>
                         <div class="col-md-4 my-2">
                             <label for="categorySelect">Category <span class="text-danger">*</span></label>
-                            <select name="category" id="categorySelect" class="form-control form-select" required>
+                            <select name="category" id="categorySelect" class="form-select" required>
                                 <option value="">Select category</option>
                             </select>
                         </div>
                         <div class="col-md-4 my-2">
                             <label for="subcategorySelect">Sub Category <span class="text-danger textreq">*</span></label>
-                            <select name="subcategory" id="subcategorySelect" class="form-control form-select">
+                            <select name="subcategory" id="subcategorySelect" class="form-select">
                                 <option value="">Select Subcategory</option>
                             </select>
                         </div>
                         <div class="col-md-4 my-2" id="apawardSection" style="display:none">
                             <label for="awardApp">Apply for Award <span
                                     class="text-danger">*</span></label>
-                            <select name="apply_for_award" id="awardApp" class="form-control form-select">
+                            <select name="apply_for_award" id="awardApp" class="form-select">
                                 <option value="">Choose...</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -287,7 +271,7 @@ include_once('config.php');
                         <div class="col-md-4 my-2" id="awardSection" style="display:none">
                             <label for="awards">Award Category <span
                                     class="text-danger"></span></label>
-                            <select name="award_category" id="awards" class="form-control form-select">
+                            <select name="award_category" id="awards" class="form-select">
                                 <option value="">Choose...</option>
                                 
                             </select>

@@ -5,7 +5,7 @@ if (empty($_SESSION['userId'])) {
     exit();
 }
 
-echo $email = $_SESSION['email'];
+$email = $_SESSION['email'];
 
 // Fetch user data from the database
 $userQuery = "SELECT * FROM users WHERE email='$email'";

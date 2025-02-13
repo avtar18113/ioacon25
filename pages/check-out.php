@@ -210,7 +210,7 @@
 <?php } ?>
 <?php if ($regData['mem_id'] != '') { ?>
     <tr>
-        <td><b>Membership No.:</b> <?= $mem_id ?></td>
+        <td><b>Membership No.:</b> <?= $regData['mem_id'] ?></td>
     </tr>
 <?php } ?>
 <?php if ($regData['total_accompany'] > 0) { ?>

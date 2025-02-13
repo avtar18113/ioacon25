@@ -52,14 +52,13 @@ if (isset($_POST['submit'])) {
         (isset($_POST['abstract_topic'])) ? $abstract_topic = $_POST['abstract_topic'] : $abstract_topic = null;
         (isset($_POST['abstract_text'])) ? $abstract_text = $_POST['abstract_text'] : $abstract_text = null; 
         (isset($_POST['iagree'])) ? $iagree = $_POST['iagree'] : $iagree = null;
-        $check_abs = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM abstract WHERE del='0' AND status='1' AND email='$email'"));
-        if ($check_abs > 4) {
+        $check_abs = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM abstract_submissions WHERE email='$email'"));
+        if ($check_abs > 3) {
             echo "<script>alert('You have already submitted 4 abstract as per guidelines.');</script>";
             echo "<script>window.location.href='$sitepath';</script>";
             exit();
         }
         $sql = "INSERT INTO abstract_submissions SET
-                author = '" . $author . "',
                 title = '" . $title . "',
                 fname = '" . addslashes($fname) . "',
                 gender = '" . $gender . "',    
@@ -75,19 +74,19 @@ if (isset($_POST['submit'])) {
                 state = '" . $state . "',
                 country = '" . $country . "', 
                 co_author1_name = '" . addslashes($co_author1_name) . "',
-                co_author1_affiliation = '" . addslashes($co_author1_affiliation) . "',
+               
                 a_institution1 = '" . addslashes($a_institution1) . "',
                 co_author2_name = '" . addslashes($co_author2_name) . "',
-                co_author2_affiliation = '" . addslashes($co_author2_affiliation) . "',
+               
                 a_institution2 = '" . addslashes($a_institution2) . "',
                 co_author3_name = '" . addslashes($co_author3_name) . "',
-                co_author3_affiliation = '" . addslashes($co_author3_affiliation) . "',
+                
                 a_institution3 = '" . addslashes($a_institution3) . "',
                 co_author4_name = '" . addslashes($co_author4_name) . "',
-                co_author4_affiliation = '" . addslashes($co_author4_affiliation) . "',
+                
                 a_institution4 = '" . addslashes($a_institution4) . "',
                 co_author5_name = '" . addslashes($co_author5_name) . "',
-                co_author5_affiliation = '" . addslashes($co_author5_affiliation) . "',
+               
                 a_institution5 = '" . addslashes($a_institution5) . "',
                 presenting_author_name = '" . addslashes($presenting_author_name) . "',
                 presenting_author_institution = '" . addslashes($presenting_author_institution) . "',
@@ -96,16 +95,12 @@ if (isset($_POST['submit'])) {
                 type_of_presentation = '" . addslashes($type_of_presentation) . "',
                 iagree = '{$iagree}',
                 send_mail = '0'";
-        //echo $sql; die;
+        // echo $sql; die;
         $result = mysqli_query($conn, $sql);
         $insert_id = mysqli_insert_id($conn);
         $abs_id = str_pad($insert_id, 4, "0", STR_PAD_LEFT);
         mysqli_query($conn, "update abstract_submissions SET abs_id='$abs_id' WHERE id=$insert_id");
-        if (!$result) {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-} else {
-    echo "Data inserted successfully";
-}
+        
         $upload_name = $_FILES['abstract_file_path']['name'];
         if (($upload_name != '') && $insert_id != '') {
             $qry = '';
@@ -124,11 +119,20 @@ if (isset($_POST['submit'])) {
             move_uploaded_file($_FILES['abstract_file_path']['tmp_name'], $target_path);
             if ($qry != '') {
                 $qry = rtrim($qry, ",");
-                mysqli_query($conn, "update abstract SET " . $qry . ", abs_id='$abs_id' WHERE id=$insert_id");
+                mysqli_query($conn, "update abstract_submissions SET " . $qry . ", abs_id='$abs_id' WHERE id=$insert_id");
             }
             $filepath = $sitepath . "/abstract/assets/upload_abs/" . $filname;
         }
-        require_once 'mailer.php';
+        
+        if (!$result) {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    
+} else {
+    // echo "Data inserted successfully";
+    require_once 'mailer.php';
         echo "<script>window.location.href='success.php';</script>";
+}
+        
+        
     }
 }

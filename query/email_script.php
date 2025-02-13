@@ -2,8 +2,8 @@
 include_once '../config.php';
 include_once '../db.php';
 include_once '../smtp/PHPMailerAutoload.php';
-$sitePath = 'https://ioacon2025guwahati.com';
-$regPath = 'https://concepttc.com/registration/ioacon25/regsubmit';
+// $siteURL = 'https://ioacon2025guwahati.com';
+// $regPath = 'https://concepttc.com/registration/ioacon25/regsubmit';
 
 
 
@@ -20,8 +20,8 @@ function fetchRegistrationData($conn,$email) {
     }
     return $result;
 }
-function generateEmailBody($row, $sitePath, $regPath) {
-    $headerImage = "$regPath/assets/images/ioacon-mailer-header.webp";    
+function generateEmailBody($row, $siteURL, $regPath) {
+    $headerImage = "$regPath/assets/images/ioacon-mailer-header.webp";   
     $details = [
         'Registration ID' => $row['rid'],
         'Name' => $row['title'] . ' ' . $row['fname'] . ' ' . $row['lname'],
@@ -123,7 +123,7 @@ function generateEmailBody($row, $sitePath, $regPath) {
     // ====================
     return "<table cellpadding='5' border='0'>
                 <tr>
-                    <a href='$sitePath' target='_blank'>
+                    <a href='$siteURL' target='_blank'>
                         <img src='$headerImage' width='700'>
                     </a><br><br>
                 </tr>
@@ -205,13 +205,13 @@ $result = fetchRegistrationData($conn, $email);
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      echo $emailBody = generateEmailBody($row, $sitePath, $regPath);
+      echo $emailBody = generateEmailBody($row, $siteURL, $regPath);
     //   echo $row['email'];
-        // $emailSent = sendEmail($row['email'], 'IOACON 2025 Conference Registration', $emailBody);
-        // updateSendMailStatus($conn, $row['rid'], $emailSent ? 1 : 0);
+        $emailSent = sendEmail($row['email'], 'IOACON 2025 Conference Registration', $emailBody);
+        updateSendMailStatus($conn, $row['rid'], $emailSent ? 1 : 0);
     }
-    // echo "<script>alert('Emails sent successfully!'); window.location.href='$regPath/adminpanel/index.php';</script>";
+    echo "<script>alert('Emails sent successfully!'); window.location.href='$siteURL';</script>";
 } else {
-    // echo "<script>alert('No records found to send emails.'); window.location.href='$regPath/adminpanel/index.php';</script>";
+    echo "<script>alert('No records found to send emails.'); window.location.href='$siteURL';</script>";
 }
 mysqli_close($conn);

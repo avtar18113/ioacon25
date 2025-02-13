@@ -1,6 +1,6 @@
 <?php
 
-$sql = "SELECT * FROM abstract WHERE email='$email'";
+$sql = "SELECT * FROM abstract_submissions WHERE email='$email'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -11,13 +11,13 @@ if (mysqli_num_rows($result) > 0) {
         $abstractHTML = "<tr>
         <td>$srn</td>
         <td>{$row['abs_id']}</td>
-        <td>{$row['topic']}</td>
+        <td>{$row['abstract_topic']}</td>
         <td>{$row['category']}</td>
         <td>{$row['subcategory']}</td>
-        <td>{$row['presentAuthor']}</td>
-        <td>{$row['presentAffiliat']}</td>
-        <td>{$row['presentDesig']}</td>
-        <td>{$row['presentEmail']}</td>
+        <td>{$row['presenting_author_name']}</td>
+        <td>{$row['presenting_author_institution']}</td>
+        <td>{$row['presenting_author_designation']}</td>
+        <td>{$row['presenting_author_email']}</td>
     </tr>";
         $absHTML .= $abstractHTML;
     }

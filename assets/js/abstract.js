@@ -379,6 +379,7 @@ $(document).ready(function () {
                 data: { category: selectedcategory },
                 dataType: 'json',
                 success: function (response) {
+                    console.log(response);
                     $('#subcategorySelect').empty().append('<option value="">Select Subcategory</option>');
                     $.each(response, function (index, subcategory) {
                         $('#subcategorySelect').append('<option value="' + subcategory + '">' + subcategory + '</option>');

@@ -3,7 +3,7 @@ include_once '../db.php';
 include_once 'num_to_word.php';
 include_once '../config.php';
 
-
+$email=$_SESSION['email'];
 // $sql = "SELECT * FROM registration WHERE del = '0' AND email = '$email'";
 $sql = "SELECT * FROM registration WHERE email = '$email'";
 $result = mysqli_query($conn, $sql);

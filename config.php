@@ -16,7 +16,7 @@ ini_set('display_errors', 1);
 $BASE_URL='https://localhost/livewebsite/registration/ioacon25/ioacon25';
 $siteTitle="IOACON 2025 Guwahati";
 $siteURL="https://ioacon2025guwahati.com";
-$regpath='https://concepttc.com/registration/ioacon25/regsubmit';
+$regPath='https://concepttc.com/registration/ioacon25/regsubmit';
 $siteLogo=$BASE_URL."/assets/images/iocon-logo.webp";
 $siteHeaderImage=$BASE_URL."/assets/images/ioacon-mailer-header.webp";
 $metaTitle="IOACON 2025 - Guwahati Conference";

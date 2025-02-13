@@ -1,19 +1,22 @@
+
 <?php
-include 'db.php';
-require '../smtp/PHPMailerAutoload.php';
-$sitePath = 'https://ioacon2025guwahati.com';
-$regPath = 'https://concepttc.com/registration/ioacon25/regsubmit';
+include_once '../config.php';
+include_once '../db.php';
+include_once '../smtp/PHPMailerAutoload.php';
+// $siteURL = 'https://ioacon2025guwahati.com';
+// $regPath = 'https://concepttc.com/registration/ioacon25/regsubmit';
+
 
 $srn=$_GET['srn'];
 function fetchRegistrationData($conn,$srn) {
-    $query = "SELECT * FROM registration_view WHERE p_status='success' AND srn= '$srn'";
+   $query = "SELECT * FROM registration WHERE p_status='success' AND srn= '$srn'";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die('Error fetching records: ' . mysqli_error($conn));
     }
     return $result;
 }
-function generateEmailBody($row, $sitePath, $regPath) {
+function generateEmailBody($row, $siteURL, $regPath) {
     $headerImage = "$regPath/assets/images/ioacon-mailer-header.webp";    
     $details = [
         'Registration ID' => $row['rid'],
@@ -24,27 +27,39 @@ function generateEmailBody($row, $sitePath, $regPath) {
     ];
 
     $additionalInfo = '';
+    $dateaccess='<tr><td><b>Conference:</b> 18 to 20 Dec 2025</td></tr>';
     if (!empty($row['pg_teach_pro'])) {
         $additionalInfo .= "<tr><td>PG Teaching Program</td><td>{$row['pg_teach_pro']}</td></tr>";
+        $dateaccess .= "<tr><td><b>PG Teaching Program:</b> 15 Dec 2025</td></tr>";
     }
     if (!empty($row['mem_id'])) {
         $additionalInfo .= "<tr><td>Membership No. </td><td>{$row['mem_id']}</td></tr>";
     }
     if (!empty($row['workshop'])) {
         $additionalInfo .= "<tr><td>Workshop</td><td>{$row['workshop']}</td></tr>";
+        $dateaccess .= "<tr><td><b>Workshop:</b> 16 Dec 2025</td></tr>";
     }
+    
     if (!empty($row['workshop_category'])) {
         $additionalInfo .= "<tr><td>Workshop Category</td><td>{$row['workshop_category']}</td></tr>";
     }
     if (!empty($row['cme_reg'])) {
         $additionalInfo .= "<tr><td>CME</td><td>{$row['cme_reg']}</td></tr>";
     }
-    if (!empty($row['banquet'])) {
-        $additionalInfo .= "<tr><td>CME</td><td>{$row['banquet']}</td></tr>";
+    if (($row['cme_reg']=='Yes' || $row['acc_cme1']=='Yes' || $row['acc_cme2']=='Yes' || $row['acc_cme3']=='Yes' )) {
+        $dateaccess .= "<tr><td><b>CME:</b> 17 Dec 2025</td></tr>";
     }
+    if (!empty($row['r_banquet'])) {
+        $additionalInfo .= "<tr><td>Banquet</td><td>{$row['r_banquet']}</td></tr>";
+    }
+
+    // if (($row['r_banquet']=='Yes' || $row['a_banquet1']=='Yes' || $row['a_banquet2']=='Yes' || $row['a_banquet3']=='Yes' )) {
+    //     $dateaccess .= "<tr><td><b>Banquet:</b> 18 Dec 2025</td></tr>";
+    // }
     
     
-    if (!empty($row['accPerson']) > 0 ) {
+    
+    if (!empty($row['total_accompany']) > 0 ) {
         $additionalInfo .= "<tr class='bg-light'><td colspan='2'>
                       <table cellpadding='0' cellspacing='0' border='1' width='700' style='border: 1px solid #ccc; font-size:12px; line-height:18px;'>
                       <tr style='background: #ebebeb;'><th>Name</th><th>Age</th><th>Banquet</th> <th>CME</th></tr>";
@@ -61,33 +76,50 @@ function generateEmailBody($row, $sitePath, $regPath) {
     }
     $feeDetails = "";
 // ===================
+    
     if ($row['credit'] > 0 ) {
         $feeDetails = "<tr><td>Registration Fee</td><td>{$row['reg_fee']}</td></tr>";
-        if ($row['cmeFee'] > 0) {
-            $feeDetails .= "<tr><td>CME Fee</td><td>{$row['cmeFee']}</td></tr>";
-        }
         if ($row['wrk_fee'] > 0) {
             $feeDetails .= "<tr><td>Workshop Fee</td><td>{$row['wrk_fee']}</td></tr>";
-        }
-        
-        if ($row['banqFee'] > 0) {
-            $feeDetails .= "<tr><td>Banquet Fee</td><td>{$row['banqFee']}</td></tr>";
-        }
-        if ($row['r_banquet2'] > 0) {
-            $feeDetails .= "<tr><td>Additional Banquet Fee</td><td>{$row['r_banquet2']}</td></tr>";
         }
         if ($row['pg_teach_fee'] > 0) {
             $feeDetails .= "<tr><td>PG Teaching Program Fee</td><td>{$row['pg_teach_fee']}</td></tr>";
         }
-        if ($row['accompany_total_fee'] > 0) {
-            $feeDetails .= "<tr><td>Accompanying Fee</td><td>{$row['accompany_total_fee']}</td></tr>";
+        if ($row['r_banquet2'] > 0) {
+            $feeDetails .= "<tr><td>Additional Banquet Fee</td><td>{$row['r_banquet2']}</td></tr>";
         }
-        
+        if ($row['cmeFee'] > 0) {
+            $feeDetails .= "<tr><td>CME Fee</td><td>{$row['cmeFee']}</td></tr>";
+        }  
+       
+        if ($row['bnq_fee'] > 0) {
+            $feeDetails .= "<tr><td>Banquet Fee</td><td>{$row['bnq_fee']}</td></tr>";
+        }
+        if ($row['registration_total'] > 0) {
+            $feeDetails .= "<tr><td><b>Registration Total Fee</b></td><td><b>{$row['registration_total']}</b></td></tr>";
+        }
+        if (($row['accFee1']+$row['accFee2']+$row['accFee3']) > 0) {
+            $accompanying_fee=($row['accFee1']+$row['accFee2']+$row['accFee3']);
+            $feeDetails .= "<tr><td>Accompanying Fee</td><td>{$accompanying_fee}</td></tr>";
+        }
+        if (($row['acc_cme1_fee']+$row['acc_cme2_fee']+$row['acc_cme3_fee']) > 0) {
+            $acc_cme_fee=($row['acc_cme1_fee']+$row['acc_cme2_fee']+$row['acc_cme3_fee']);
+            $feeDetails .= "<tr><td>Accompanying CME Fee</td><td>{$acc_cme_fee}</td></tr>";
+        }
+        if (($row['a_banquet1_fee']+$row['a_banquet2_fee']+$row['a_banquet3_fee']) > 0) {
+            $acc_banq=($row['a_banquet1_fee']+$row['a_banquet2_fee']+$row['a_banquet3_fee']);
+            $feeDetails .= "<tr><td>Accompanying Banquet Fee</td><td>{$acc_banq}</td></tr>";
+        }
+        if ($row['accompany_total_fee'] > 0) {
+            $feeDetails .= "<tr><td><b>Accompanying Total Fee</b></td><td><b>{$row['accompany_total_fee']}</b></td></tr>";
+        }
+    
     }
+    
     // ====================
     return "<table cellpadding='5' border='0'>
                 <tr>
-                    <a href='$sitePath' target='_blank'>
+                    <a href='$siteURL' target='_blank'>
                         <img src='$headerImage' width='700'>
                     </a><br><br>
                 </tr>
@@ -109,9 +141,12 @@ function generateEmailBody($row, $sitePath, $regPath) {
                 <tr>
                     <td>Paid Amount: <strong>{$row['credit']}</strong><br>
                         Payment Status: <strong>{$row['p_status']}</strong><br>
-                        Transaction ID: <strong>{$row['TransactionID']}</strong>
+                        Transaction ID: <strong>{$row['razorpay_payment_id']}</strong>
                     </td>
                 </tr>
+                <tr><td><b>You can attend conference on below dates as per your selected registration choices</b></td></tr>
+                $dateaccess
+                
                 <tr>
                     <td>
                         <br><strong>Regards,<br>
@@ -156,23 +191,23 @@ function sendEmail($email, $subject, $body) {
     return $mail->Send();
 }
 function updateSendMailStatus($conn, $rid, $status) {
-    $updateSQL = "UPDATE registration_view SET sendmail=$status WHERE rid='$rid'";
+    $updateSQL = "UPDATE registration SET sendmail=$status WHERE rid='$rid'";
     if (!mysqli_query($conn, $updateSQL)) {
         error_log("Error updating sendmail status for RID $rid: " . mysqli_error($conn));
     }
 }
 
-$result = fetchRegistrationData($conn,$srn);
+$result = fetchRegistrationData($conn, $srn);
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      echo $emailBody = generateEmailBody($row, $sitePath, $regPath);
+      echo $emailBody = generateEmailBody($row, $siteURL, $regPath);
     //   echo $row['email'];
         // $emailSent = sendEmail($row['email'], 'IOACON 2025 Conference Registration', $emailBody);
         // updateSendMailStatus($conn, $row['rid'], $emailSent ? 1 : 0);
     }
-    // echo "<script>alert('Emails sent successfully!'); window.location.href='$regPath/backend_home.php';</script>";
+    // echo "<script>alert('Emails sent successfully!'); window.location.href='$siteURL';</script>";
 } else {
-    echo "<script>alert('No records found to send emails.'); window.location.href='$regPath/adminpanel/index.php';</script>";
+    // echo "<script>alert('No records found to send emails.'); window.location.href='$siteURL';</script>";
 }
 mysqli_close($conn);

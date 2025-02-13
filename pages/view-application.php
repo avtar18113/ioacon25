@@ -42,7 +42,7 @@ include_once('../config.php');
                         <table class="table table-borderless d-none d-md-block w-100" cellpadding="0" cellspacing="0" border="0">
 <tr>
     <td>Registration ID</td>
-    <td>: <?php {$regData['rid'];}?></td>
+    <td>: <?= $regData['rid'];?></td>
 </tr>
 <tr>
     <td>Name</td>
@@ -195,7 +195,7 @@ include_once('../config.php');
 <?php } ?>
 <?php if ($regData['mem_id'] != '') { ?>
     <tr>
-        <td><b>Membership No.:</b> <?= $mem_id ?></td>
+        <td><b>Membership No.:</b> <?= $regData['mem_id'] ?></td>
     </tr>
 <?php } ?>
 <?php if ($regData['total_accompany'] > 0) { ?>

@@ -22,12 +22,7 @@
               <i class="mdi mdi-home menu-icon"></i>
           </a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" href="<?=$BASE_URL?>/register-now">
-              <span class="menu-title">Register Now</span>
-              <i class="mdi mdi-laptop menu-icon"></i>
-          </a>
-      </li>
+      
       <li class="nav-item">
           <a class="nav-link" href="<?=$BASE_URL?>/abs-index">
               <span class="menu-title">Abstract Submission</span>

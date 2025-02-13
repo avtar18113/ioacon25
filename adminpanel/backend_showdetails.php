@@ -1,11 +1,11 @@
 <?php
-include 'db.php';
+include '../db.php';
 $k = $_POST['id'];
 if ($k == 'all') {
-    $query = mysqli_query($conn, "SELECT * FROM registration_view ");
+    $query = mysqli_query($conn, "SELECT * FROM registration ");
 } else {
     $k1 = $_POST['id'];
-    $query = mysqli_query($conn, "SELECT * FROM registration_view Where p_status='{$k1}' ");
+    $query = mysqli_query($conn, "SELECT * FROM registration Where p_status='{$k1}' ");
 }
 $i = 1;
 while ($row = mysqli_fetch_array($query)) {

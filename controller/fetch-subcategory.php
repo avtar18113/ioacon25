@@ -2,7 +2,7 @@
 // Your database connection code
 include('../db.php');
 if (isset($_GET['category']) || isset($_POST['category'])) {
-    $selectedCategory = $_GET['category'];
+    $selectedCategory = $_POST['category'];
    
     $subcategories = [];
     // Assuming $conn is your database connection object
