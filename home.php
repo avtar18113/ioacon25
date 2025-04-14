@@ -23,7 +23,7 @@ include_once('config.php');
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    <p class="bg-primary text-white py-2 px-2">Registration Status-
+                                    <p class="bg-primary text-white py-2 px-2">Registration Status- <?= $regData['p_status'];?>
                                     </p>
                                 </li>
                             </ul>
@@ -33,15 +33,24 @@ include_once('config.php');
                         <div class="col-md-12 stretch-card grid-margin">
                             <div class="card bg-gradient-danger">
                                 <div class="card-body">
-                                    <a href="#" class="btn btn-danger">Reciept</a>
-                                    <a href="#" class="btn btn-danger">Invitation Letter</a>
-                                    <a href="#" class="btn btn-danger">Upload CV</a>
-                                    <a href="#" class="btn btn-danger">View Program</a>
-                                    <a href="#" class="btn btn-danger">Download Reciept</a>
+                                    <!--<a href="#" class="btn btn-danger">Reciept</a>-->
+                                    <!--<a href="#" class="btn btn-danger">Invitation Letter</a>-->
+                                    <!--<a href="#" class="btn btn-danger">Upload CV</a>-->
+                                    <a href="https://concepttc.com/ioacon25/pages/view-application" class="btn btn-danger">Registration Details</a>
+                                    <a href="https://concepttc.com/ioacon25/pages/view-receipt" class="btn btn-danger">Download E-Reciept</a>
+                                    <a href="https://concepttc.com/ioacon25/pages/view-letter" class="btn btn-danger">Download Invitation</a>
+                                    <a href="https://concepttc.com/ioacon25/abs-index" class="btn btn-danger">Abstract Submission</a> 
+                                    <a href="https://concepttc.com/ioacon25/pages/view-abstract" class="mt-2 btn btn-danger">View Submitted Abstract</a>  
+                                    <a href="https://concepttc.com/ioacon25/addon.php" class="mt-2 btn btn-danger">Addon</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                            <div class="card grid-margin">
+                                <h5 class="alert alert-warning">If payment deducted from your bank/credit card but registration status isn't updated, please wait 24hrs. It will be updated within this timeframe. Thank you for your patience.</h5>
+                            </div>
+                        </div>
                     <div class="row">                        
                         <div class="col-md-6 grid-margin">
                             <div class="card">
@@ -104,11 +113,7 @@ include_once('config.php');
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="card grid-margin">
-                                <h5 class="alert alert-warning">If payment deducted from your bank/credit card but registration status isn't updated, please wait 24hrs. It will be updated within this timeframe. Thank you for your patience.</h5>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 

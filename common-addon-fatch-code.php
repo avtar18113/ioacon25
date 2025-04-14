@@ -1,7 +1,7 @@
 <?php 
-// $_SESSION['userId']=2;
-if (empty($_SESSION['email'])) {
-    header('Location: ./login.php');
+$_SESSION['userId']=2;
+if (empty($_SESSION['userId'])) {
+    header('Location: ../login.php');
     exit();
 }
 
@@ -12,15 +12,10 @@ $email = $_SESSION['email'];
 // $userResult = $conn->query($userQuery);
 // if(mysqli_num_rows($userResult) > 0) $userData = $userResult->fetch_assoc();
 
-// Fetch registration data from the database
-$regDetails = "SELECT * FROM registration WHERE email='$email'";
+// Fetch user data from the database
+$regDetails = "SELECT * FROM addon WHERE email='$email'";
 $regResult = $conn->query($regDetails);
 if(mysqli_num_rows($regResult) > 0) $regData = $regResult->fetch_assoc();
-
-// Fetch addon data from the database
-$addonDetails = "SELECT * FROM addon WHERE email='$email'";
-$addonResult = $conn->query($addonDetails);
-if(mysqli_num_rows($addonResult) > 0){ $addonData = $addonResult->fetch_assoc(); $addonStatus=$addonData['p_status']; }else{$addonStatus='Pending';}
     
     
 $fullname=$regData['title'].' '.  $regData['fname'].' '.  $regData['lname'];

@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Prevent SQL injection
     $email = $conn->real_escape_string($email);
     
-    $sql = "SELECT * FROM registration WHERE email='$email' AND p_status='success'";
+    echo $sql = "SELECT * FROM registration WHERE email='$email' AND p_status='success'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {

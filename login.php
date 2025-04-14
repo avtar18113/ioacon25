@@ -22,7 +22,7 @@ include_once('./config.php');
                             <form action="" id="login-form" method="POST">
                                 <div class="row">
                                 <div class="col-md-8 my-2 mb-3">
-                                    <label for="emailValidate">Registered Email <span class="text-danger">*</span></label>
+                                    <label for="emailValidate">Enter Registered Email <span class="text-danger">*</span></label>
                                     <input type="email" name="emailValidate" id="emailValidate" class="form-control email-input" required>
                                     
                                 </div>

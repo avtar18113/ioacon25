@@ -6,9 +6,6 @@ include_once('config.php');
 <?php include_once('./common/head.php'); ?>
 
 <body>
-    <style>
-        .form-control,.form-select{border: 1px solid black;}
-    </style>
     <div class="container-scroller">
         <?php  include_once('./db.php'); include_once('./common-fatch-code.php'); include_once('./common/topnav.php'); ?>
         <!-- partial -->
@@ -20,50 +17,47 @@ include_once('config.php');
                     <!-- Abstract Submission code here -->
                     <div class='row justify-content-center'>
         <div class='col-md-12 stretch-card card p-0 overflow-hidden'>
-            <form action="./controller/AbstractController.php" id="abs-form" method="post" enctype="multipart/form-data">
+            <form action="./controller/AbstractController.php" id="abs-form" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="form-box formbg">
                     <img class="w-100" src="<?= $siteHeaderImage ?>" alt="IOACON Header Image">
                     <h2 class="mb-0 text-center sub-heading">Abstract Submission</h2>
                     <div class="row px-lg-5 p-3">
                         <div class="col-md-4 my-2 mb-3">
                             <label for="email1">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control email-input"  value="<?= $regData['email'] ?>" readonly>
-                            <input type="hidden" name="email" id="email1" class="form-control email-input"  value="<?= $regData['email'] ?>">
+                            <input type="email" name="email" id="email1" value="<?= $regData['email'] ?>" class="form-control email-input" required readonly>
+                            <p id="email1_error"></p>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="mobile">Mobile <span class="text-danger">*</span></label>
-                            <input type="text" name="mobile" id="mobile" class="form-control mobile" value="<?= $regData['mobile'] ?>" readonly>
+                            <input type="text" name="mobile" value="<?= $regData['c_code']. $regData['mobile'] ?>" id="mobile" class="form-control mobile" required readonly>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="reg_no">Conference Registration No <span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="reg_no" id="reg_no" class="form-control" value="<?= $regData['rid'] ?>" readonly>
-                            <input type="hidden" name="reg_no" id="reg_no" class="form-control" value="<?= $regData['rid'] ?>">
+                            <input type="text" name="reg_no" id="reg_no" value="<?= $regData['rid'] ?>" class="form-control" readonly>
                         </div>
                         
-                        <div class="col-md-8 my-2 mb-3">
+                        <div class="col-md-6 my-2 mb-3">
                             <label for="fname">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" name="fname" id="fname" class="form-control" value="<?php  echo $regData['title'].' '.  $regData['fname'].' '.  $regData['lname']; ?>" readonly>
+                            <input type="text" name="fname" id="fname" value="<?= $regData['title'].' '. $regData['fname'].' '. $regData['lname'] ?>" class="form-control" required readonly>
                         </div>
                         <div class="col-md-2 my-2 mb-3">
                             <label for="gender">Gender <span class="text-danger">*</span></label>
-                            <input name="gender" class="form-control" value="<?= $regData['gender'] ?>" readonly>
-                            
-
+                            <input type="text" name="gender" class="form-control" value="<?= $regData['gender'] ?>" required readonly>
                         </div>
                         
-                        <div class="col-md-2 my-2 mb-3">
+                        <div class="col-md-4 my-2 mb-3">
                             <label for="age">Age<span class="text-danger">*</span></label>
-                            <input type="text" name="age" id="age" class="form-control age" value="<?= $regData['age'] ?>" >
+                            <input type="text" name="age" id="age" class="form-control age" required>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="designation">Designation <span class="text-danger">*</span></label>
-                            <input type="text" name="designation" id="designation" class="form-control" value="<?= $regData['designation'] ?>"
-                                readonly>
+                            <input type="text" name="designation" id="designation" class="form-control"
+                                required>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="institute">Institute <span class="text-danger">*</span></label>
-                            <input type="text" name="institute" id="institute" class="form-control" value="<?= $regData['institute'] ?>" required>
+                            <input type="text" name="institute" id="institute" class="form-control" required>
                         </div>
                         <div class="col-md-4 my-2 mb-3">
                             <label for="yearof_mbbs">Year of Passing MBBS <span class="text-danger">*</span></label>
@@ -72,29 +66,29 @@ include_once('config.php');
                         </div>
                         <div class="col-md-12 my-2 mb-3 d-none">
                             <label for="address">Address <span class="text-danger">*</span></label>
-                            <textarea type="text" name="address" id="address" class="form-control" rows="4"><?= $regData['address'] ?>"</textarea>
+                            <textarea type="text" name="address" id="address" class="form-control" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row px-lg-5 p-3 justify-content-between">
-                    <div class="col-md-4 pe-2 mb-3">
-                                    <label for="Country">Country <span class="text-danger">*</span></label>
-                                    <input name="country" class="countries form-control" id="countryId" value="<?= $regData['country'] ?>" readonly>
-                                    
-                                </div>
-                                <div class="col-md-4 pe-2 mb-3">
-                                    <label for="state">State <span class="text-danger">*</span></label>
-                                    <input name="state" class="states form-control" id="stateId" value="<?= $regData['state'] ?>" readonly>
-                                   
-                                </div>
-                                <div class="col-md-4 pe-2 mb-3">
-                                    <label for="city">City <span class="text-danger"></span></label>
-                                    <input name="city" class="cities form-control" id="cityId" value="<?= $regData['city'] ?>" readonly>
-                                    
-                                </div>
-                                <div class="col-md-4 pe-2 mb-3">
-                                    <label for="pincode">PIN/ZIP Code<span class="text-danger">*</span></label>
-                                    <input type="text" name="pincode" id="pincode" class="form-control" value="<?= $regData['pincode'] ?>" readonly>
-                                </div>
+                        <div class="col-md-4 my-2 mb-3">
+                            <label for="Country">Country <span class="text-danger">*</span></label>
+                            <input type="text" name="country" class="countries form-control" id="countryId" value="<?= $regData['country'] ?>" required readonly>
+                                
+                        </div>
+                        <div class="col-md-4 my-2 mb-3">
+                            <label for="state">State <span class="text-danger">*</span></label>
+                            <input type="text" name="state" class="states form-control" id="stateId" value="<?= $regData['state'] ?>" required readonly>
+                               
+                        </div>
+                        <div class="col-md-4 my-2 mb-3">
+                            <label for="city">City <span class="text-danger"></span></label>
+                            <input type="text" name="city" class="cities form-control" value="<?= $regData['city'] ?>" id="cityId" readonly>
+                                
+                        </div>
+                        <div class="col-md-4 my-2 mb-3 d-none">
+                            <label for="pincode">PIN/ZIP Code</label>
+                            <input type="text" name="pincode" id="pincode" class="form-control" value="<?= $regData['pincode'] ?>" readonly>
+                        </div>
                     </div>
                     <div class="sub-heading">
                         <h4 class="mb-4 text-center">Co Authors Details</h4>
@@ -223,7 +217,7 @@ include_once('config.php');
                         <div class="col-md-4 my-2">
                             <label for="presentation">Type of Presentation <span
                                     class="text-danger">*</span></label>
-                            <select name="type_of_presentation" id="abs-presentation" class="form-select" required>
+                            <select name="type_of_presentation" id="abs-presentation" class="form-control form-select" required>
                                 <option value="">Choose...</option>
                                 <option value="Free Paper">Free Paper</option>
                                 <option value="Award Paper">Award Paper</option>
@@ -233,7 +227,7 @@ include_once('config.php');
                         </div>
                         <div class="col-md-4 my-2" id="memberSection" style="display:none">
                             <label for="memberOption">Are You Member<span class="text-danger">*</span></label>
-                            <select name="member_option" id="memberOption" class="form-select">
+                            <select name="member_option" id="memberOption" class="form-control form-select">
                                 <option value="">Choose...</option>
                                 <option value="No">No</option>
                                 <option value="Life Member">Life Member</option>
@@ -247,20 +241,20 @@ include_once('config.php');
                         </div>
                         <div class="col-md-4 my-2">
                             <label for="categorySelect">Category <span class="text-danger">*</span></label>
-                            <select name="category" id="categorySelect" class="form-select" required>
+                            <select name="category" id="categorySelect" class="form-control form-select" required>
                                 <option value="">Select category</option>
                             </select>
                         </div>
                         <div class="col-md-4 my-2">
                             <label for="subcategorySelect">Sub Category <span class="text-danger textreq">*</span></label>
-                            <select name="subcategory" id="subcategorySelect" class="form-select">
+                            <select name="subcategory" id="subcategorySelect" class="form-control form-select">
                                 <option value="">Select Subcategory</option>
                             </select>
                         </div>
                         <div class="col-md-4 my-2" id="apawardSection" style="display:none">
                             <label for="awardApp">Apply for Award <span
                                     class="text-danger">*</span></label>
-                            <select name="apply_for_award" id="awardApp" class="form-select">
+                            <select name="apply_for_award" id="awardApp" class="form-control form-select">
                                 <option value="">Choose...</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -271,7 +265,7 @@ include_once('config.php');
                         <div class="col-md-4 my-2" id="awardSection" style="display:none">
                             <label for="awards">Award Category <span
                                     class="text-danger"></span></label>
-                            <select name="award_category" id="awards" class="form-select">
+                            <select name="award_category" id="awards" class="form-control form-select">
                                 <option value="">Choose...</option>
                                 
                             </select>

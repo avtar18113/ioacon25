@@ -9,12 +9,22 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['SERVER_ADDR'] == 'https://
     $db = "ioacon25";
     $username = "root";
     $password = "";
+$sitepath='https://localhost/2025/ioacon2025guwahati.com';
+$regpath='https://localhost/2025/ioacon25';
 } else {
     // Assuming it's a live server
     $host = "localhost";
     $db = "ioacon25";
     $username = "ioacon25";
     $password = "PYUC75iVQZ@X";
+    
+    // $host = "localhost";
+    // $db = "ioacontest";
+    // $username = "ioacontest";
+    // $password = "PYUC75iVQZ@X";
+    
+$sitepath='https://ioacon2025guwahati.com';
+$regpath='https://concepttc.com/ioacon25';
 }
 
 // Establish a connection to the database
@@ -24,6 +34,5 @@ $conn = mysqli_connect($host, $username, $password, $db);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$sitepath='https://ioacon2025guwahati.com';
-$regpath='https://concepttc.com/registration/ioacon25/ioacon25';
+
 ?>

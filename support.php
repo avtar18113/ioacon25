@@ -15,7 +15,9 @@ include_once('./config.php');
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                        <?php include_once('./common/sub-menu.php'); ?>
+                        <?php 
+                        // include_once('./common/sub-menu.php'); 
+                        ?>
                     </div>
                     <div class="page-header m-0">
                         <h3 class="page-title">
@@ -26,7 +28,7 @@ include_once('./config.php');
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    <p class="bg-primary text-white py-2 px-2">Registration Status-
+                                    <p class="bg-primary text-white py-2 px-2">Registration Status- <?= $regData['p_status'];?>
                                     </p>
                                 </li>
                             </ul>
@@ -48,7 +50,7 @@ include_once('./config.php');
                             <tr>
                                 <th>Name</th>
                                 <td>
-                                    Mr. Rahul
+                                    Rahul
                                 </td>
                             </tr>
                             <tr>

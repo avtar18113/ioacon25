@@ -80,171 +80,10 @@
                         <h2 class="text-center">IOACON 2025 Registration</h2><br />
 
                         <form action="./query/registration-ccreg.php" method="post" enctype="multipart/form-data" id="register_form">
-                            <ul class="nav nav-tabs justify-content-center" id="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active active_tab1" style="border:1px solid #ccc" id="list_login_details">Personal Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_personal_details" style="border:1px solid #ccc">Address Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Registration</a>
-                                </li>
-                            </ul>
+                            
                             <div class="tab-content" style="margin-top:16px;">
-                                <div class="tab-pane active step" id="login_details">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Personal Details</div>
-                                        <div class="panel-body">
-                                            <div class="row justify-content-center">
-
-                                                <div class="col-md-4 mb-3">
-
-                                                    <label for="title">Title<span class="text-danger">*</span></label>
-                                                    <select name="title" class="form-select" required>
-                                                        <option value="">Select Title</option>
-                                                        <option value="Prof.">Prof.</option>
-                                                        <option value="Dr.">Dr.</option>
-                                                        <option value="Mr.">Mr.</option>
-                                                        <option value="Ms.">Ms.</option>
-                                                        <option value="Mrs.">Mrs.</option>
-                                                    </select>
-                                                    <span class="text-danger error_code"></span>
-
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="fname">First Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="fname" id="fname" class="form-control" value="" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="lname">Last Name <span class="text-danger"></span></label>
-                                                    <input type="text" name="lname" id="lname" class="form-control" value="" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="gender">Gender <span class="text-danger">*</span></label>
-                                                   
-                                                    <select name="gender" id="gender" class="form-control" required>
-                                                        <option value="">Slect Gender</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
-
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="email1">Email <span class="text-danger">*</span></label>
-                                                    <input type="email" name="email" id="email1" class="form-control email-input" value="" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="c_code">Country code <span class="text-danger">*</span></label>
-                                                    <input type="text" name="c_code" id="c_code" class="form-control c_code" value="" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="mobile">Mobile <span class="text-danger">*</span></label>
-                                                    <input type="text" name="mobile" id="mobile" class="form-control mobile" value="" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="designation">Designation <span class="text-danger"></span></label>
-                                                    <input type="text" name="designation" id="designation" class="form-control designation">
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="institute">Institute/ Hospital<span class="text-danger">*</span></label>
-                                                    <input type="text" name="institute" id="institute" class="form-control institute" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="medical_council_no">Medical Council No <span class="text-danger">*</span></label>
-                                                    <input type="text" name="medical_council_no" id="medical_council_no" class="form-control medical_council_no" required>
-                                                    <span class="text-danger error_code"></span>
-                                                </div>
-
-
-                                            </div>
-                                            <br />
-
-                                            <div class="text-center">
-                                                <button type="button" name="btn_login_details" id="btn_login_details" class="btn btn-primary btn-lg my-2">Next</button>
-                                            </div>
-                                            <br />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="personal_details">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Fill Address Details</div>
-                                        <div class="panel-body">
-                                            <div class="row jusify-content-between">
-
-                                                <div class="col-md-10 pe-2 mb-3">
-                                                    <label for="address">Postal Address </label>
-                                                    <textarea type="text" name="address" id="address" class="form-control" rows="3"></textarea>
-                                                </div>
-
-                                                <div class="col-md-5 pe-2 mb-3">
-                                                    <label for="Country">Country <span class="text-danger">*</span></label>
-                                                    <!--<select name="country" class="countries form-select" id="countryId" onchange="updateRegistrationCategory()" required>-->
-                                                    <!--    <option value="">Select Country</option>-->
-                                                    <!--</select>-->
-                                                   <select name="country" class="countries form-select" id="countryId" onchange="updateRegistrationCategory()" required>
-
-                                    <option value=""></option>
-
-                                    <?php
-                                    $country = "SELECT * FROM country";
-                                    $con_qry = mysqli_query($conn, $country);
-
-                                    while ($rw = mysqli_fetch_array($con_qry)) { ?>
-
-                                    <option value="<?= $rw['country'];?>" myTag="<?php echo $rw['c_code']; ?>">
-
-                                        <?php echo $rw['country']; ?></option>
-
-                                    <?php } ?>
-
-                                </select>
-                                                </div>
-                                                <div class="col-md-5 pe-2 mb-3">
-                                                    <label for="state">State <span class="text-danger">*</span></label>
-                                                    <!--<select name="state" class="states form-select" id="stateId" required>-->
-                                                    <!--    <option value="">Select State</option>-->
-                                                    <!--</select>-->
-                                                     <input type="text" name="state" id="stateId" class="form-control" required>
-                                                </div>
-
-                                                <div class="col-md-5 pe-2 mb-3">
-                                                    <label for="city">City <span class="text-danger"></span></label>
-                                                    <!--<select name="city" class="cities form-select" id="cityId">-->
-                                                    <!--    <option value="">Select City</option>-->
-                                                    <!--</select>-->
-                                                    <input type="text" name="city" id="city" class="form-control" required>
-                                                </div>
-                                                <div class="col-md-5 pe-2 mb-3">
-                                                    <label for="pincode">PIN/ZIP Code<span class="text-danger">*</span></label>
-                                                    <input type="text" name="pincode" id="pincode" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <div class="text-center">
-                                                <button type="button" name="previous_btn_personal_details" id="previous_btn_personal_details" class="btn btn-warning btn-lg my-2">Previous</button>
-                                                <button type="button" name="btn_personal_details" id="btn_personal_details" class="btn btn-primary btn-lg my-2">Next</button>
-                                            </div>
-                                            <br />
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
                                 <div class="tab-pane" id="contact_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Select Registration Slab</div>
@@ -257,13 +96,10 @@
                                                 </div>
                                                 <div class="col-md-3 ps-2 mb-3">
                                                     <label for="regCat">Registration Category <span class="text-danger">*</span></label>
-
-
                                                     <select name="regCat" id="regCat" class="regCat form-select" onchange="regVal()" required>
                                                         <option value=''>Select</option>
                                                     </select>
                                                 </div>
-
 
                                                 <div class="col-md-3 ps-2 mb-3 mem_id" style="display: none; ">
                                                     <label for="mem_id">Membership No <span class="text-danger"></span></label>
@@ -491,7 +327,7 @@
     <script src="assets/js/dashboard.js"></script>
 
 
-    <!--<script src="./assets/js/countrystatecity.js"></script>-->
+    <script src="./assets/js/countrystatecity.js"></script>
     <script type="text/javascript" src="./assets/js/formjs.js"></script>
     
     <script type="text/javascript" src="./assets/js/multistep.js"></script>
