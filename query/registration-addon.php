@@ -8,13 +8,13 @@ if (empty($_POST['email'])) {
     $_SESSION['email'] = $email;
 }
 if (!empty($email)) {
-    (isset($_POST['regCat'])) ? $regCat = $_POST['regCat'] : $regCat = null;
+        (isset($_POST['regCat'])) ? $regCat = $_POST['regCat'] : $regCat = null;
         (isset($_POST['r_banquet'])) ? $r_banquet = $_POST['r_banquet'] : $r_banquet = null;
         (isset($_POST['r_banquet2'])) ? $r_banquet2 = $_POST['r_banquet2'] : $r_banquet2 = null;
         (isset($_POST['cme_reg'])) ? $cme_reg = $_POST['cme_reg'] : $cme_reg = null;
         (isset($_POST['workshop'])) ? $workshop = $_POST['workshop'] : $workshop = null;
         (isset($_POST['pg_teach_pro'])) ? $pg_teach_pro = $_POST['pg_teach_pro'] : $pg_teach_pro = null;
-        (isset($_POST['medical_council_no'])) ? $medical_council_no = $_POST['medical_council_no'] : $medical_council_no = null;
+       
         (isset($_POST['institute'])) ? $institute = $_POST['institute'] : $institute = null;
         (isset($_POST['gender'])) ? $gender = $_POST['gender'] : $gender = null;
         (isset($_POST['designation'])) ? $designation = $_POST['designation'] : $designation = null;
@@ -24,59 +24,59 @@ if (!empty($email)) {
         (isset($_POST['city'])) ? $city = $_POST['city'] : $city = null;
         (isset($_POST['pincode'])) ? $pincode = $_POST['pincode'] : $pincode = null;
         (isset($_POST['mem_id'])) ? $mem_id = $_POST['mem_id'] : $mem_id = null;
-        (isset($_POST['accPerson'])) ? $total_accompany = $_POST['accPerson'] : $total_accompany = null;
+        (isset($_POST['total_accompany'])) ? $total_accompany = $_POST['total_accompany'] : $total_accompany = null;
         (isset($_POST['workshop_option_name'])) ? $workshop_option_name = $_POST['workshop_option_name'] : $workshop_option_name = null;
     // Fixing the condition for 'ICS/NCCP Members' and 'Non Member'
     if ($regCat == $cat1) {
-        $reg_fee = $cat1_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme1_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq1_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     } else if($regCat == $cat2) {
-        $reg_fee = $cat2_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme2_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq1_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     } else if($regCat == $cat3) {
-        $reg_fee = $cat3_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme3_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq1_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == $cat4) {
-        $reg_fee = $cat4_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme4_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq2_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq2_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == $cat5) {
-        $reg_fee = $cat5_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme5_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq3_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq3_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == $cat6) {
-        $reg_fee = $cat6_fee;
+       
         if($cme_reg =='Yes'){ $cmeFee=$cme6_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq4_fee; }else{$banqFee=0;}
         if($r_banquet2>0){ $banqFee2=$banq4_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == $cat7) {
-        $reg_fee = $cat7_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme2_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq1_fee; }else{$banqFee=0;}
          if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == $cat8) {
-        $reg_fee = $cat8_fee;
+        
         if($cme_reg =='Yes'){ $cmeFee=$cme1_fee; }else{$cmeFee=0;}
         if($r_banquet =='Yes'){ $banqFee=$banq1_fee; }else{$banqFee=0;}
          if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
         if($workshop ==$workshop1){ $wrk_fee=$wrk1_fee; } else if($workshop == $workshop2){ $wrk_fee=$wrk2_fee; }else{$wrk_fee=0;}
     }else if($regCat == 'Package Registration') {   
-        $reg_fee = 15500;         
+             
         $cme_reg ='Yes';
         $cmeFee=0;
         $r_banquet =='Yes';
@@ -84,7 +84,7 @@ if (!empty($email)) {
         $wrk_fee=0;
         if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
     }else if($regCat == 'Only conference') {    
-        $reg_fee = 10500;        
+             
         $cme_reg ='No';
         $cmeFee=0;
         $r_banquet =='No';
@@ -95,7 +95,7 @@ if (!empty($email)) {
         $r_banquet='';
         if($r_banquet2>0){ $banqFee2=$banq1_fee*$r_banquet2; }else{$banqFee2=0;}
     }else if($regCat=='Conf Registration plus banquet'){
-        $reg_fee = 13000;        
+              
         $cme_reg ='No';
         $cmeFee=0;
         $r_banquet =='Yes';
@@ -202,22 +202,22 @@ if (!empty($email)) {
         }
 	}else{$acc_fee=0; $accCmeTotal=0;
         $accBanqTotal=0; $accCmeFee1=0; $accCmeFee2=0; $accCmeFee3=0; $accBanqFee1=0; $accBanqFee2=0; $accBanqFee3=0;}
-       
-        if($total_accompany>0 && $_POST['a1name']!=''){
-            $accFee1=((int)$acc_fee/(int)$total_accompany);
-        }else{$accFee1=0;}
-    
-        if($total_accompany>0 && $_POST['a2name']!=''){
-            $accFee2=((int)$acc_fee/(int)$total_accompany);
-        }else{$accFee2=0;}
-    
-        if($total_accompany>0 && $_POST['a3name']!=''){
-            $accFee3=((int)$acc_fee/(int)$total_accompany);
-        }else{$accFee3=0;}
+
+    if($total_accompany>0 && $_POST['a1name']!=''){
+        $accFee1=((int)$acc_fee/(int)$total_accompany);
+    }else{$accFee1=0;}
+
+    if($total_accompany>0 && $_POST['a2name']!=''){
+        $accFee2=((int)$acc_fee/(int)$total_accompany);
+    }else{$accFee2=0;}
+
+    if($total_accompany>0 && $_POST['a3name']!=''){
+        $accFee3=((int)$acc_fee/(int)$total_accompany);
+    }else{$accFee3=0;}
 
     $acc_total= $acc_fee + $accCmeTotal + $accBanqTotal;
     // echo $acc_total;
-    $registration_total=$reg_fee+$cmeFee+$wrk_fee+$banqFee+$pg_teach_fee+$banqFee2;
+    $registration_total=$cmeFee+$wrk_fee+$banqFee+$pg_teach_fee+$banqFee2;
     
     $total = $registration_total + $acc_total;
    
@@ -227,10 +227,10 @@ if (!empty($email)) {
     $_SESSION['tid'] = $tid;
     $_SESSION['order_id'] = $order_id;
     $_SESSION['gtotal'] = $gtotal;
-    $query = mysqli_query($conn, "SELECT srn, email FROM registration WHERE del = '0' AND email = '" . trim($email) . "'");
+    $query = mysqli_query($conn, "SELECT srn, email FROM addon WHERE del = '0' AND email = '" . trim($email) . "'");
     $select = mysqli_num_rows($query);
     $sql_data = [
-        "title" => $_POST['title'],        
+        "rid"=>$_POST['rid'],
         "fname" => $_POST['fname'],
         "lname" => $_POST['lname'],
         "mobile" => $_POST['mobile'],
@@ -245,8 +245,7 @@ if (!empty($email)) {
         "a1name" => $_POST['a1name'],
         "a1age" => $_POST['a1age'],
         "accFee1"=>$accFee1,
-        "acc_cme1" => $cme1,
-        "medical_council_no"=>$medical_council_no,
+        "acc_cme1" => $cme1,        
         "acc_cme1_fee"=>$accCmeFee1,
         "a_banquet1" => $a_banquet1,
         "a_banquet1_fee" => $accBanqFee1,
@@ -259,7 +258,7 @@ if (!empty($email)) {
         "a_banquet2_fee" => $accBanqFee2,      
         "a3name" => $_POST['a3name'],
         "a3age" => $_POST['a3age'],
-        "accFee3"=>$accBanqFee3,
+        "accFee3"=>$accFee3,
         "acc_cme3" => $cme3,
         "acc_cme3_fee"=>$accCmeFee3,
         "a_banquet3" => $a_banquet3,  
@@ -275,8 +274,7 @@ if (!empty($email)) {
         "pg_teach_pro"=>$pg_teach_pro,
         "pg_teach_fee"=>$pg_teach_fee,
         "reg_typ" => $_POST['reg_typ'],
-        "regCat" => $regCat,
-        "reg_fee" => $reg_fee,
+        "regCat" => $regCat,        
         "workshop" => $workshop,
         "workshop_option_name"=>$workshop_option_name,
         "wrk_fee" => $wrk_fee,
@@ -288,57 +286,19 @@ if (!empty($email)) {
         "reg_mode"=>'Online',
         "sendmail" =>'0'
     ];
-    $user_data = [   
-        "title" => $_POST['title'],     
-        "fname" => $_POST['fname'],
-        "lname" => $_POST['lname'],
-        "c_code" => $_POST['c_code'],
-        "mobile" => $_POST['mobile'],
-        "email" => $_POST['email'],  
-        "address" => $_POST['address'],        
-        "country" => $_POST['country'],
-        "state" => $_POST['state'],
-        "city" => $_POST['city'], 
-        "pincode" => $_POST['pincode'], 
-        "gender" => $gender,               
-        "reg_status" =>'0'
-    ];
+    
     if ($select > 0) {
         $row = mysqli_fetch_array($query);
         $update_id = $row['srn'];
-        $sql = "UPDATE registration SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data)) . " WHERE del = '0' AND email = '$email'";
-
-        $sql_user = "UPDATE users SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($user_data), $user_data)) . " WHERE email = '$email'";
+        $sql = "UPDATE addon SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data)) . " WHERE del = '0' AND email = '$email'";
 
     } else {
-        $sql = "INSERT INTO registration SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data));
-
-        $sql_user = "INSERT INTO users SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($user_data), $user_data));
-    }
-    $upload_name = $_FILES['upload_pg']['name'];
-    if ($upload_name != '' && $update_id != '') {
-        $qry = '';
-        $target = '../upload_pg/';
-        if ($_FILES['upload_pg']['name'] != '') {
-            $qry = '';
-            $ext = pathinfo($_FILES['upload_pg']['name']);
-            $path = $update_id . "_" . $upload_name;
-            $qry .= "upload_pg = '" . $path . "',";
-            $target_path = $target . $path;
-            if (file_exists($target_path))
-                unlink($target_path);
-        }
-        move_uploaded_file($_FILES['upload_pg']['tmp_name'], $target_path);
-        if ($qry != '') {
-            $qry = rtrim($qry, ",");
-            mysqli_query($conn, "UPDATE registration SET " . $qry . " WHERE del='0' AND email ='$email'");
-        }
-    }
-    $result = mysqli_query($conn, $sql);
-    $result_user = mysqli_query($conn, $sql_user);
+        $sql = "INSERT INTO addon SET " . implode(", ", array_map(fn($key, $value) => "$key = '$value'", array_keys($sql_data), $sql_data));       
+    }    
+    $result = mysqli_query($conn, $sql); 
     
-    if ($result && $result_user) {
-        echo "<script>window.location.href='../pages/check-out.php';</script>";
+    if ($result) {
+        echo "<script>window.location.href='../pages/addon-check-out.php';</script>";
     } else {
         echo 'Failed';
     }

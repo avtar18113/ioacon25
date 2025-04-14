@@ -18,24 +18,23 @@ if (mysqli_num_rows($result) > 0) {
         $email = $row[ 'email' ];
         $wrk_fee = $row[ 'wrk_fee' ];
         $cmeFee = $row[ 'cmeFee' ];
-        $accBanqTotal = $row[ 'accBanqTotal' ];
+        $acc_fee=(int)$row['accFee1']+(int)$row['accFee2']+(int)$row['accFee3'];
         $workshop = $row[ 'workshop' ];
         $reg_typ = $row[ 'reg_typ' ];
         $regCat = $row[ 'regCat' ];
-        $wshop_cat = $row[ 'wshop_cat' ];
+        
         $rid = $row[ 'rid' ];
         $panno = $row[ 'panno' ];
         $reg_fee = $row[ 'reg_fee' ];
         $mem_id  = $row[ 'mem_id' ];
         $upload_pg  = $row[ 'upload_pg' ];
         $bnq_fee = $row[ 'bnq_fee' ];
-        $banqFee = $row[ 'banqFee' ];
-        $acc_fee = $row[ 'acc_fee' ];
-        $gst = $row[ 'gst' ];
-        $accCmeTotal = $row[ 'accCmeTotal' ];
-        $accPerson = $row[ 'accPerson' ];
-        $HotelName = $row[ 'HotelName' ];
-        $HtNight = $row[ 'HtNight' ];
+        $banqFee = (int)$row['a_banquet1_fee']+(int)$row['a_banquet2_fee']+(int)$row['a_banquet3_fee'];
+        $acc_cme_fee=(int)$row['acc_cme1_fee']+(int)$row['acc_cme2_fee']+(int)$row['acc_cme3_fee'];
+       $registration_total=$row['registration_total'];
+       $accompany_total_fee=$row['accompany_total_fee'];
+        
+       
         $a1name = $row[ 'a1name' ];
         $a1age = $row[ 'a1age' ];
         $a_banquet1 = $row[ 'a_banquet1' ];
@@ -48,18 +47,16 @@ if (mysqli_num_rows($result) > 0) {
         $a3age = $row[ 'a3age' ];
         $a_banquet3 = $row[ 'a_banquet3' ];
         $acc_cme3 = $row[ 'acc_cme3' ];
-        $a_banquet_fee = $row[ 'a_banquet_fee' ];
-        $acc_total = $row[ 'acc_total' ];
+       
         $total = $row[ 'total' ];        
-        $charges = $row[ 'charges' ];
+       
         $ref = $row[ 'ref' ];
         $p_status = $row[ 'p_status' ];
         $dateCreated = $row[ 'dateCreated' ];
         $pg_teach_pro = $row[ 'pg_teach_pro' ];
-        $pg_teach_fee = $row[ 'pg_teach_fee' ];
-        $OrderID = $row[ 'OrderID' ];
-        $credit = $row[ 'credit' ];
-        $txnid = $row[ 'TransactionID' ];
+        $pg_teach_fee = $row[ 'pg_teach_fee' ];       
+        
+        $txnid = $row[ 'razorpay_payment_id' ];
         $r_banquet2 = $row[ 'r_banquet2' ];
         $banqFee2 = $row[ 'banqFee2' ];
     }
@@ -67,14 +64,15 @@ if (mysqli_num_rows($result) > 0) {
 $total = $total . '.00';
 $get_amount = AmountInWords($total);
 require_once('../TCPDF/tcpdf.php');
+
 class MYPDF extends TCPDF
  {
     //Page header
     public function Header()
     {
-        // $siteHeaderImage = $siteHeaderImage;
+       
       
-        $this->Image($siteHeaderImage, 0, 0, 210, 0, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $this->Image('../assets/images/ioacon-mailer-header.jpg', 0, 0, 210, 0, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
     // Page footer
     public function Footer()
@@ -110,25 +108,15 @@ $pdf->setFont('helvetica', '', 10);
 // set page format (read source code documentation for further information)
 // add first page -
 // detail fetech
-if ($wrk_fee > 0) { $work = "<tr><td>WorkshopFee</td><td>$wrk_fee</td></tr>";} else { $work = '';}
-if ($cmeFee > 0) {$dcmeFee = "<tr><td>CME Fee</td><td>$cmeFee</td></tr>";} else {$dcmeFee = '';}
-if ($banqFee > 0) {$dbanqFee = "<tr><td>Banquet Fee</td><td>$banqFee</td></tr>";} else {$dbanqFee = '';}
-if ($acc_fee > 0) {$dacc_fee = "<tr><td>Accompanying Fee</td><td>$acc_fee</td></tr>";} else {$dacc_fee = '';}
-if ($accCmeTotal > 0) {
-    $daccCmeTotal = "<tr><td>Accompanying CME Fee</td><td>$accCmeTotal</td></tr>";
-} else {
-    $daccCmeTotal = '';
-}
-if ($pg_teach_fee > 0) {
-    $dpg_teach_fee = "<tr><td>PG Teaching Fee</td><td>$pg_teach_fee</td></tr>";
-} else {
-    $dpg_teach_fee = '';
-}
-if ($banqFee2 > 0) {
-    $dbanqFee2 = "<tr><td>Extra Banquet Fee</td><td>$banqFee2</td></tr>";
-} else {
-    $dbanqFee2 = '';
-}
+
+
+
+
+
+
+
+
+
 if ($mem_id != '') {
     $memde = '<b>Membership No.:</b>' . $mem_id;
 } else {
@@ -167,14 +155,33 @@ td{border-left:1px solid #000;}
 </style>
 <table style='width:50%; border: 1px solid #ddd;'>
 <tr><th><strong>Particular</strong></th><th><strong>Amount (INR)</strong></th></tr>
-<tr><td>Conference Fee</td><td>$reg_fee</td></tr>
-$work
-$dcmeFee
-$dbanqFee
-$dacc_fee
-$daccCmeTotal
-$dpg_teach_fee
-$dbanqFee2
+<tr><td>Conference Fee</td><td>$reg_fee</td></tr>";
+if ($bnq_fee > 0){ $particular .= "<tr><td>Banquet Fee</td><td>$bnq_fee</td></tr>";}
+if ($cmeFee > 0) { $particular .=  "<tr><td>CME Fee</td><td>$cmeFee</td></tr>";}
+if ($banqFee2 > 0) {
+    $particular .="<tr><td>Extra Banquet Fee</td><td>$banqFee2</td></tr>";
+}
+if ($pg_teach_fee > 0) {
+    $particular .="<tr><td>PG Teaching Fee</td><td>$pg_teach_fee</td></tr>";
+}
+if ($wrk_fee > 0) { $particular .= "<tr><td>WorkshopFee</td><td>$wrk_fee</td></tr>";}
+if($registration_total>0){
+   $particular .= "<tr><td><b>Registration Total Fee</b></td><td><b>$registration_total</b></td></tr>"; 
+}
+if ($acc_fee > 0) {
+   
+    $particular .= "<tr><td>Accompanying Fee</td><td>$acc_fee</td></tr>";
+}
+if($acc_cme_fee>0){
+     $particular .= "<tr><td>Accompanying CME Fee</td><td>$acc_cme_fee</td></tr>";
+}
+if ($banqFee > 0) { $particular .=  "<tr><td>Accompanying Banquet Fee</td><td>$banqFee</td></tr>";}
+if($accompany_total_fee>0){
+   $particular .= "<tr><td><b>Accompanying Total Fee</b></td><td><b>$accompany_total_fee</b></td></tr>"; 
+}
+
+
+$particular .= "
 <tr><th><strong>Total Fee</strong></th><th>$total</th></tr>
 </table>
 ";
@@ -194,11 +201,12 @@ $word = "<table><tr><td><strong>In Words: </strong>$get_amount</td></tr>
 $pdf->AddPage('P', 'A4', false, false);
 $pdf->Ln(22);
 // $pdf->writeHTMLCell(70, 8, 'Registration ID.: '.$rid, 0, 0, 'D');
+
 $pdf->writeHTMLCell(78, 0, '', '', $rid, 0, 0, 0, true, 'L', true);
 $pdf->writeHTMLCell(78, 70, '', '', $memde, 0, 0, 0, true, '', true);
 $pdf->writeHTMLCell(78, 5, '', '', $reg_no, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(150, 5, '', '', $fullname1, 0, 1, 0, true, '', true);
-$pdf->writeHTMLCell(78, 5, '', '', $mobile, 0, 1, 0, true, '', true);
+$pdf->writeHTMLCell(78, 5, '', '', $mobile, 0, 0, 0, true, '', true);
 $pdf->writeHTMLCell(78, 5, '', '', $email, 0, 1, 0, true, '', true);
 // $pdf->Cell(50, 8, 'Mobile No.: ' .$mobile, 0, 1, 'E');
 $pdf->Ln(3);
