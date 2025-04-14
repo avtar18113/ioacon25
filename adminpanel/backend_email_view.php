@@ -30,6 +30,10 @@ function generateEmailBody($row, $siteURL, $regPath) {
     $dateaccess='<tr><td><b>Conference:</b> 18 to 20 Dec 2025</td></tr>';
     if (!empty($row['pg_teach_pro'])) {
         $additionalInfo .= "<tr><td>PG Teaching Program</td><td>{$row['pg_teach_pro']}</td></tr>";
+       
+    }
+    if ($row['pg_teach_pro']=='Yes') {
+        
         $dateaccess .= "<tr><td><b>PG Teaching Program:</b> 15 Dec 2025</td></tr>";
     }
     if (!empty($row['mem_id'])) {
@@ -37,9 +41,12 @@ function generateEmailBody($row, $siteURL, $regPath) {
     }
     if (!empty($row['workshop'])) {
         $additionalInfo .= "<tr><td>Workshop</td><td>{$row['workshop']}</td></tr>";
+        
+    }
+    if ($row['workshop']!='No') {
+       
         $dateaccess .= "<tr><td><b>Workshop:</b> 16 Dec 2025</td></tr>";
     }
-    
     if (!empty($row['workshop_category'])) {
         $additionalInfo .= "<tr><td>Workshop Category</td><td>{$row['workshop_category']}</td></tr>";
     }
@@ -98,16 +105,16 @@ function generateEmailBody($row, $siteURL, $regPath) {
         if ($row['registration_total'] > 0) {
             $feeDetails .= "<tr><td><b>Registration Total Fee</b></td><td><b>{$row['registration_total']}</b></td></tr>";
         }
-        if (($row['accFee1']+$row['accFee2']+$row['accFee3']) > 0) {
-            $accompanying_fee=($row['accFee1']+$row['accFee2']+$row['accFee3']);
+        if (((int)$row['accFee1']+(int)$row['accFee2']+(int)$row['accFee3']) > 0) {
+            $accompanying_fee=((int)$row['accFee1']+(int)$row['accFee2']+(int)$row['accFee3']);
             $feeDetails .= "<tr><td>Accompanying Fee</td><td>{$accompanying_fee}</td></tr>";
         }
-        if (($row['acc_cme1_fee']+$row['acc_cme2_fee']+$row['acc_cme3_fee']) > 0) {
-            $acc_cme_fee=($row['acc_cme1_fee']+$row['acc_cme2_fee']+$row['acc_cme3_fee']);
+        if (((int)$row['acc_cme1_fee']+(int)$row['acc_cme2_fee']+(int)$row['acc_cme3_fee']) > 0) {
+            $acc_cme_fee=((int)$row['acc_cme1_fee']+(int)$row['acc_cme2_fee']+(int)$row['acc_cme3_fee']);
             $feeDetails .= "<tr><td>Accompanying CME Fee</td><td>{$acc_cme_fee}</td></tr>";
         }
-        if (($row['a_banquet1_fee']+$row['a_banquet2_fee']+$row['a_banquet3_fee']) > 0) {
-            $acc_banq=($row['a_banquet1_fee']+$row['a_banquet2_fee']+$row['a_banquet3_fee']);
+        if (((int)$row['a_banquet1_fee']+(int)$row['a_banquet2_fee']+(int)$row['a_banquet3_fee']) > 0) {
+            $acc_banq=((int)$row['a_banquet1_fee']+(int)$row['a_banquet2_fee']+(int)$row['a_banquet3_fee']);
             $feeDetails .= "<tr><td>Accompanying Banquet Fee</td><td>{$acc_banq}</td></tr>";
         }
         if ($row['accompany_total_fee'] > 0) {
@@ -130,7 +137,7 @@ function generateEmailBody($row, $siteURL, $regPath) {
                     <td>
                         <table border='1' cellspacing='0' cellpadding='5' width='700'>
                             <tr><td colspan='2' align='center'><strong>Registration Details</strong></td></tr>
-                            " . implode('', array_map(fn($key, $value) => "<tr><td>$key</td><td>$value</td></tr>", array_keys($details), $details)) . "
+                            ".implode('', array_map(fn($key, $value) => "<tr><td>$key</td><td>$value</td></tr>", array_keys($details), $details))."
                             $additionalInfo
                             <tr><td colspan='2' align='center'><strong>Fee Details</strong></td></tr>
                             $feeDetails
