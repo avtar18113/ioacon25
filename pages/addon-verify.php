@@ -21,7 +21,7 @@ try {
     $razorpay_payment_id = $_POST['razorpay_payment_id'];
     $email = $_SESSION['email'];
     $price = $_SESSION['price'];
-    $reg_sql = "SELECT MAX(reg_no) AS reg_no FROM registration WHERE del = 0";
+    $reg_sql = "SELECT MAX(reg_no) AS reg_no FROM addon WHERE del = 0";
     $result = mysqli_query($conn, $reg_sql);
     if (!$result) {
         throw new Exception("Database query failed: " . mysqli_error($conn));
@@ -29,7 +29,7 @@ try {
     $row = mysqli_fetch_assoc($result);
     $reg_no = isset($row['reg_no']) ? $row['reg_no'] + 1 : 1;
     $rid = "IOACON" . str_pad($reg_no, 4, "0", STR_PAD_LEFT);
-    $update_sql = "UPDATE registration 
+    $update_sql = "UPDATE addon 
                    SET reg_no = ?, rid = ?, p_status = 'success', razorpay_payment_id = ?, credit = ? 
                    WHERE email = ? AND del = 0";
     $stmt = mysqli_prepare($conn, $update_sql);
@@ -41,7 +41,8 @@ try {
         throw new Exception("Database update failed: " . mysqli_stmt_error($stmt));
     }
     mysqli_stmt_close($stmt);
-    echo "<script>window.location.href='../query/email_script.php';</script>";
+    echo "<script>window.location.href='./record_fetch_update.php';</script>";
+    // echo "<script>alert('Addon successfully! update'); window.location.href='$regPath';</script>";
     exit();
 } catch (SignatureVerificationError $e) {
     $success = false;
@@ -52,7 +53,7 @@ try {
 }
 if (!$success) {
     $email = $_SESSION['email'] ?? 'unknown';
-    $update_sql = "UPDATE registration SET p_status = 'Failed' WHERE email = ? AND del = 0";
+    $update_sql = "UPDATE addon SET p_status = 'Failed' WHERE email = ? AND del = 0";
     $stmt = mysqli_prepare($conn, $update_sql);
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $email);

@@ -1,3 +1,4 @@
+
 <?php
 include_once('../config.php');
 ?>
@@ -26,7 +27,7 @@ include_once('../config.php');
                     </div>
                     <div class='row'>
                         <div class='col-md-12 card vh-90'>
-                        <iframe src="<?=$BASE_URL?>/query/generate-receipt.php" width="100%" height="100%" title="IOACON 2025" ></iframe>
+                        <iframe src="<?=$BASE_URL?>/query/generate-leter.php" width="100%" height="100%" title="IOACON 2025" ></iframe>
                         </div>
                     </div>
                 </div>

@@ -99,7 +99,7 @@
 <?php if ($regData['pg_teach_pro'] != '') { ?>
     <tr>
         <td>PG Teaching Program</td>
-        <td>: <?= $pg_teach_pro ?></a></td>
+        <td>: <?= $regData['pg_teach_pro'] ?></a></td>
     </tr>
 <?php } ?>
 <?php if ($regData['workshop'] != '') { ?>
@@ -195,7 +195,7 @@
 
 <?php if ($regData['pg_teach_pro'] != '') { ?>
     <tr>
-        <td><b>PG Teaching Program</b>: <?= $pg_teach_pro ?></a></td>
+        <td><b>PG Teaching Program</b>: <?= $regData['pg_teach_pro'] ?></a></td>
     </tr>
 <?php } ?>
 <?php if ($regData['workshop'] != '') { ?>
@@ -300,22 +300,22 @@
                                                         <td>: <b><?php echo $regData['registration_total']; ?></b></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if (($regData['accFee1']+$regData['accFee2']+$regData['accFee3']) > 0) { ?>
+                                                <?php if ((int)($regData['accFee1']+(int)$regData['accFee2']+(int)$regData['accFee3']) > 0) { ?>
                                                     <tr>
                                                         <td>Accompanying Fee</td>
-                                                        <td>: <?php echo ($regData['accFee1']+$regData['accFee2']+$regData['accFee3']); ?></td>
+                                                        <td>: <?php echo ((int)$regData['accFee1']+(int)$regData['accFee2']+(int)$regData['accFee3']); ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if (($regData['acc_cme1_fee']+$regData['acc_cme2_fee']+$regData['acc_cme3_fee']) > 0) { ?>
+                                                <?php if (((int)$regData['acc_cme1_fee']+(int)$regData['acc_cme2_fee']+(int)$regData['acc_cme3_fee']) > 0) { ?>
                                                     <tr>
                                                         <td>Accompanying CME Fee</td>
-                                                        <td>: <?php echo ($regData['acc_cme1_fee']+$regData['acc_cme2_fee']+$regData['acc_cme3_fee']); ?></td>
+                                                        <td>: <?php echo ((int)$regData['acc_cme1_fee']+(int)$regData['acc_cme2_fee']+(int)$regData['acc_cme3_fee']); ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <?php if (($regData['a_banquet1_fee']+$regData['a_banquet2_fee']+$regData['a_banquet3_fee']) > 0) { ?>
+                                                <?php if (((int)$regData['a_banquet1_fee']+(int)$regData['a_banquet2_fee']+(int)$regData['a_banquet3_fee']) > 0) { ?>
                                                     <tr>
                                                         <td>Accompanying Banquet Fee</td>
-                                                        <td>: <?php echo ($regData['a_banquet1_fee']+$regData['a_banquet2_fee']+$regData['a_banquet3_fee']); ?></td>
+                                                        <td>: <?php echo ((int)$regData['a_banquet1_fee']+(int)$regData['a_banquet2_fee']+(int)$regData['a_banquet3_fee']); ?></td>
                                                     </tr>
                                                 <?php } ?>
                                                  <?php if ($regData['accompany_total_fee'] > 0) { ?>

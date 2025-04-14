@@ -27,7 +27,7 @@ $razorpayOrder = $api->order->create($orderData);
 $razorpayOrderId = $razorpayOrder['id'];
 $_SESSION['razorpay_order_id'] = $razorpayOrderId;
 $displayAmount = $amount = $orderData['amount'];
-$sql_payment = "UPDATE registration SET razorpayOrderId='$razorpayOrderId' WHERE del='0' AND email = '$email' AND srn='$srnReg'";
+$sql_payment = "UPDATE addon SET razorpayOrderId='$razorpayOrderId' WHERE del='0' AND email = '$email' AND srn='$srnReg'";
 // echo $sql_payment;
 // echo $description;
 // die();
@@ -67,7 +67,7 @@ if ($displayCurrency !== 'INR')
 }
 $json = json_encode($data);
 ?>
-<form action="verify.php" method="POST">
+<form action="addon-verify.php" method="POST">
     <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="<?php echo $data['key']?>"
         data-amount="<?php echo $data['amount']?>" data-currency="INR" data-name="<?php echo $data['name']?>"
         data-image="<?php echo $data['image']?>" data-description="<?php echo $data['description']?>"
