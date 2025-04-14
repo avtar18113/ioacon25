@@ -7,6 +7,4 @@
 <script src="<?=$BASE_URL?>/assets/js/off-canvas.js"></script>
 <script src="<?=$BASE_URL?>/assets/js/hoverable-collapse.js"></script>
 <script src="<?=$BASE_URL?>/assets/js/misc.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
 <script src="<?=$BASE_URL?>/assets/js/dashboard.js"></script>
