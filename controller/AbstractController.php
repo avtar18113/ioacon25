@@ -1,4 +1,5 @@
 <?php require('../db.php');
+require('../config.php');
 $member = $memno = $abs_title ='';
 if (isset($_POST['submit'])) {
     if (empty($_POST['email'])) {
@@ -58,6 +59,7 @@ if (isset($_POST['submit'])) {
             echo "<script>window.location.href='$sitepath';</script>";
             exit();
         }
+        $iagree=1;
         $sql = "INSERT INTO abstract_submissions SET
                 title = '" . $title . "',
                 fname = '" . addslashes($fname) . "',
@@ -73,6 +75,16 @@ if (isset($_POST['submit'])) {
                 pincode = '" . $pincode . "',
                 state = '" . $state . "',
                 country = '" . $country . "', 
+                member_option='".$member_option."',
+                membership_no='".$membership_no."',
+                category='".$category."',
+                subcategory='".$subcategory."',
+                apply_for_award='".$apply_for_award."',
+                award_category='".$award_category."',
+                video_link='".$video_link."',
+               
+                abstract_topic='".addslashes($abstract_topic)."',
+                abstract_text='".addslashes($abstract_text)."',
                 co_author1_name = '" . addslashes($co_author1_name) . "',
                
                 a_institution1 = '" . addslashes($a_institution1) . "',
@@ -121,7 +133,7 @@ if (isset($_POST['submit'])) {
                 $qry = rtrim($qry, ",");
                 mysqli_query($conn, "update abstract_submissions SET " . $qry . ", abs_id='$abs_id' WHERE id=$insert_id");
             }
-            $filepath = $sitepath . "/abstract/assets/upload_abs/" . $filname;
+            $filepath = $regPath . "/assets/upload_abs/" . $filname;
         }
         
         if (!$result) {
@@ -130,7 +142,7 @@ if (isset($_POST['submit'])) {
 } else {
     // echo "Data inserted successfully";
     require_once 'mailer.php';
-        echo "<script>window.location.href='success.php';</script>";
+        // echo "<script>window.location.href='success.php';</script>";
 }
         
         

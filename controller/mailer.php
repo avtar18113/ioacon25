@@ -4,7 +4,7 @@ $message = "
 <table cellpadding='0' cellspacing='0' border='0'
 style='font-family: sans-serif; font-size:14px; line-height:18px; color:#505050; background:#f8f9fa; width:100%; max-width:720px; margin:3em auto;border-collapse:collapse;'>
 <tr>
-<td width='100%'><img src='$mail_header' alt='IOACON Header Image' width='100%' /></td>
+<td width='100%'><img src='$siteHeaderImage' alt='IOACON Header Image' width='100%' /></td>
 </tr>
 <tr>
 <td width='100%' style='padding: 20px;'>
@@ -21,7 +21,7 @@ style=' width:100%; border-collapse:collapse; border: 1px solid #e8e8e8;'>
 </tr>
 <tr>
 <td width='30%' style='padding: 10px;'>Presenting Author Name</td>
-<td style='padding: 10px;'>$fullname</td>
+<td style='padding: 10px;'>$title $fname </td>
 </tr>
 <tr>
 <td width='30%' style='padding: 10px;'>Gender</td>
@@ -295,5 +295,5 @@ if (!$mail->Send()) {
 } else {
 
     mysqli_query($conn, "update abstract_submissions SET send_mail='1' WHERE id=$insert_id");
-    echo "<script>window.location.href = '../home';</script>";
+    echo "<script>window.location.href = '../pages/success-abstract.php';</script>";
 }
